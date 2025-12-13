@@ -1,72 +1,12 @@
-// app/product/[slug]/page.tsx
+// app/product/[slug]/page.tsx - SIMPLIFIED VERSION
 "use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  ShoppingCart,
-  CheckCircle,
-  Minus,
-  Plus,
-  ChevronLeft,
-} from "lucide-react";
-import { useState } from "react";
+import { ShoppingCart, CheckCircle, Minus, Plus, ChevronLeft } from "lucide-react";
+import { useState, use } from "react";
 import Link from "next/link";
-
-// This would normally come from your database or API
-const getProductBySlug = (slug: string) => {
-  const products = {
-    "kaftan-emerald": {
-      id: "p1",
-      name: "Emerald Kaftan with Gold Monogram",
-      price: 75000,
-      slug: "kaftan-emerald",
-      images: [
-        "/images/kaftan-emerald.jpg",
-        "/images/kaftan-emerald-2.jpg",
-        "/images/kaftan-emerald-3.jpg",
-      ],
-      description:
-        "A luxurious, custom-tailored kaftan made from premium silk-cotton blend. Features intricate gold thread embroidery and a personalized chest monogram. Perfect for traditional events and high-end occasions.",
-      category: "Kaftans",
-      isMonogrammed: true,
-      availableSizes: ["S", "M", "L", "XL"],
-      details: [
-        "Premium silk-cotton blend fabric",
-        "Hand-embroidered gold thread detailing",
-        "Personalized chest monogram included",
-        "Perfect for weddings and traditional events",
-        "Professional tailoring and fitting",
-      ],
-    },
-    "kaftan-royal-blue": {
-      id: "p2",
-      name: "Royal Blue Kaftan",
-      price: 80000,
-      slug: "kaftan-royal-blue",
-      images: [
-        "/images/kaftan-blue.jpg",
-        "/images/kaftan-blue-2.jpg",
-        "/images/kaftan-blue-3.jpg",
-      ],
-      description:
-        "Elegant royal blue kaftan with silver embroidery and premium fabric finish. A statement piece for any special occasion.",
-      category: "Kaftans",
-      isMonogrammed: true,
-      availableSizes: ["S", "M", "L", "XL"],
-      details: [
-        "Royal blue premium fabric",
-        "Silver thread embroidery",
-        "Custom monogram available",
-        "Elegant and sophisticated design",
-        "Made to measure",
-      ],
-    },
-    // Add more products here...
-  };
-
-  return products[slug as keyof typeof products] || products["kaftan-emerald"];
-};
+import { getProductBySlug } from "@/lib/productData";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -99,9 +39,11 @@ const imageVariants = {
 export default function ProductDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const product = getProductBySlug(params.slug);
+  const { slug } = use(params);
+  const product = getProductBySlug(slug);
+  
   const [selectedSize, setSelectedSize] = useState<string>(
     product.availableSizes[0]
   );
@@ -117,8 +59,7 @@ export default function ProductDetailPage({
   return (
     <div className="min-h-screen bg-[#faf9f6]">
       <div className="container mx-auto py-8 px-4">
-        {/* Back Button */}
-        <Link
+        <Link 
           href="/products"
           className="inline-flex items-center text-gray-600 hover:text-[#4a5d3f] mb-6 transition-colors"
         >
@@ -133,7 +74,10 @@ export default function ProductDetailPage({
           className="flex flex-col lg:flex-row gap-8 lg:gap-12 bg-white p-6 md:p-10 rounded-xl shadow-lg"
         >
           {/* Image Gallery Section */}
-          <motion.div variants={imageVariants} className="lg:w-1/2">
+          <motion.div
+            variants={imageVariants}
+            className="lg:w-1/2"
+          >
             {/* Main Image */}
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl shadow-xl border-2 border-gray-200 mb-4">
               <Image
@@ -143,12 +87,13 @@ export default function ProductDetailPage({
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
+                unoptimized
               />
             </div>
 
             {/* Thumbnail Images */}
             <div className="grid grid-cols-3 gap-3">
-              {product.images.map((image, index) => (
+              {product.images.map((image: string, index: number) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImageIndex(index)}
@@ -164,6 +109,7 @@ export default function ProductDetailPage({
                     fill
                     className="object-cover"
                     sizes="150px"
+                    unoptimized
                   />
                 </button>
               ))}
@@ -171,7 +117,10 @@ export default function ProductDetailPage({
           </motion.div>
 
           {/* Product Info Section */}
-          <motion.div variants={itemVariants} className="lg:w-1/2">
+          <motion.div
+            variants={itemVariants}
+            className="lg:w-1/2"
+          >
             <p className="text-sm font-semibold uppercase text-gray-500 mb-2">
               {product.category}
             </p>
@@ -187,19 +136,21 @@ export default function ProductDetailPage({
             </p>
 
             {/* Product Details */}
-            <div className="mb-6 p-4 bg-[#f5f5f5] rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                Product Features:
-              </h3>
-              <ul className="space-y-2">
-                {product.details.map((detail, index) => (
-                  <li key={index} className="flex items-start text-gray-700">
-                    <span className="text-[#4a5d3f] mr-2">✓</span>
-                    <span className="text-sm">{detail}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {product.details && (
+              <div className="mb-6 p-4 bg-[#f5f5f5] rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  Product Features:
+                </h3>
+                <ul className="space-y-2">
+                  {product.details.map((detail: string, index: number) => (
+                    <li key={index} className="flex items-start text-gray-700">
+                      <span className="text-[#4a5d3f] mr-2">✓</span>
+                      <span className="text-sm">{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Size Selection */}
             <motion.div variants={itemVariants} className="mb-6">
@@ -207,7 +158,7 @@ export default function ProductDetailPage({
                 Select Size:
               </h3>
               <div className="flex flex-wrap gap-3">
-                {product.availableSizes.map((size) => (
+                {product.availableSizes.map((size: string) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
@@ -277,22 +228,16 @@ export default function ProductDetailPage({
             <div className="mt-8 pt-8 border-t border-gray-200">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
                 <div>
-                  <span className="font-semibold text-gray-900">SKU:</span>{" "}
-                  {product.id}
+                  <span className="font-semibold text-gray-900">SKU:</span> {product.id}
                 </div>
                 <div>
-                  <span className="font-semibold text-gray-900">Category:</span>{" "}
-                  {product.category}
+                  <span className="font-semibold text-gray-900">Category:</span> {product.category}
                 </div>
                 <div>
-                  <span className="font-semibold text-gray-900">
-                    Availability:
-                  </span>{" "}
-                  In Stock
+                  <span className="font-semibold text-gray-900">Availability:</span> In Stock
                 </div>
                 <div>
-                  <span className="font-semibold text-gray-900">Shipping:</span>{" "}
-                  Free shipping over ₦50,000
+                  <span className="font-semibold text-gray-900">Shipping:</span> Free shipping over ₦50,000
                 </div>
               </div>
             </div>
