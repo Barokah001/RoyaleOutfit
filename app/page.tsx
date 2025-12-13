@@ -1,16 +1,9 @@
+// app/page.tsx - UPDATED with correct routing
 "use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ShoppingBag,
-  Sparkles,
-  TrendingUp,
-  Truck,
-  Shield,
-  Award,
-  Heart,
-} from "lucide-react";
+import { ShoppingBag, Sparkles, TrendingUp, Truck, Shield, Award, Heart } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -43,8 +36,9 @@ export default function HomePage() {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
+            {/* FIXED: Changed from single product to products page */}
             <Link
-              href="/product/kaftan-emerald"
+              href="/products"
               className="inline-flex items-center justify-center gap-2 bg-[#4a5d3f] text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-lg"
             >
               <ShoppingBag className="h-5 w-5" />
@@ -106,31 +100,15 @@ export default function HomePage() {
               Featured Collections
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Explore our carefully curated selection of traditional Nigerian
-              attire
+              Explore our carefully curated selection of traditional Nigerian attire
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              {
-                name: "Luxury Kaftans",
-                items: "25+ Styles",
-                href: "/collections/kaftans",
-                emoji: "🎭",
-              },
-              {
-                name: "Traditional Caps",
-                items: "15+ Designs",
-                href: "/collections/caps",
-                emoji: "👑",
-              },
-              {
-                name: "Premium Trousers",
-                items: "20+ Options",
-                href: "/collections/trousers",
-                emoji: "👔",
-              },
+              { name: 'Luxury Kaftans', items: '6+ Styles', href: '/collections/kaftans', emoji: '🎭' },
+              { name: 'Traditional Caps', items: '5+ Designs', href: '/collections/caps', emoji: '👑' },
+              { name: 'Premium Trousers', items: '5+ Options', href: '/collections/trousers', emoji: '👔' }
             ].map((collection, idx) => (
               <Link
                 key={idx}
@@ -142,9 +120,7 @@ export default function HomePage() {
                 </div>
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
                   <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
-                    <h3 className="text-2xl font-bold mb-2">
-                      {collection.name}
-                    </h3>
+                    <h3 className="text-2xl font-bold mb-2">{collection.name}</h3>
                     <p className="text-sm">{collection.items}</p>
                   </div>
                 </div>
@@ -165,34 +141,16 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              {
-                icon: Truck,
-                title: "Free Shipping",
-                desc: "On orders over ₦50,000",
-              },
-              {
-                icon: Shield,
-                title: "Secure Payment",
-                desc: "100% secure transactions",
-              },
-              {
-                icon: Award,
-                title: "Quality Guaranteed",
-                desc: "Premium materials only",
-              },
-              {
-                icon: Heart,
-                title: "Made with Love",
-                desc: "Handcrafted perfection",
-              },
+              { icon: Truck, title: 'Free Shipping', desc: 'On orders over ₦50,000' },
+              { icon: Shield, title: 'Secure Payment', desc: '100% secure transactions' },
+              { icon: Award, title: 'Quality Guaranteed', desc: 'Premium materials only' },
+              { icon: Heart, title: 'Made with Love', desc: 'Handcrafted perfection' }
             ].map((item, idx) => (
               <div key={idx} className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#e8efe6] mb-4">
                   <item.icon className="h-8 w-8 text-[#4a5d3f]" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-600 text-sm">{item.desc}</p>
               </div>
             ))}
@@ -208,8 +166,7 @@ export default function HomePage() {
               Join Our Community
             </h2>
             <p className="text-gray-600 mb-8">
-              Subscribe to get special offers, style updates, and exclusive
-              access to new collections
+              Subscribe to get special offers, style updates, and exclusive access to new collections
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
