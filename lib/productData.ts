@@ -19,16 +19,17 @@ export const allProducts: Product[] = [
   // KAFTANS
   {
     id: "p1",
-    name: "Emerald Kaftan with Gold Monogram",
+    name: "Black Kaftan with Gold Embroidery",
     price: 75000,
-    slug: "kaftan-emerald",
-    imageUrl: "https://placehold.co/600x800/4a5d3f/white?text=Emerald+Kaftan",
+    slug: "kaftan-black",
+    imageUrl: "/images/black-l-kaftan.png",
     images: [
-      "https://placehold.co/600x800/4a5d3f/white?text=Emerald+Kaftan+Front",
-      "https://placehold.co/600x800/4a5d3f/white?text=Emerald+Kaftan+Side",
-      "https://placehold.co/600x800/4a5d3f/white?text=Emerald+Kaftan+Back"
+      "/images/black-l-kaftan.png",
+      "/images/black-l-kaftan-2.png",
+      "/images/black-l-kaftan-3.png",
     ],
-    description: "A luxurious, custom-tailored kaftan made from premium silk-cotton blend. Features intricate gold thread embroidery and a personalized chest monogram.",
+    description:
+      "A luxurious, custom-tailored kaftan made from premium silk-cotton blend. Features intricate gold thread embroidery and a personalized chest monogram.",
     category: "Kaftans",
     availableSizes: ["S", "M", "L", "XL"],
     isMonogrammed: true,
@@ -37,21 +38,22 @@ export const allProducts: Product[] = [
       "Hand-embroidered gold thread detailing",
       "Personalized chest monogram included",
       "Perfect for weddings and traditional events",
-      "Professional tailoring and fitting"
-    ]
+      "Professional tailoring and fitting",
+    ],
   },
   {
     id: "p2",
-    name: "Royal Blue Kaftan",
+    name: "Navy Blue Kaftan",
     price: 80000,
-    slug: "kaftan-royal-blue",
-    imageUrl: "https://placehold.co/600x800/1e3a8a/white?text=Royal+Blue+Kaftan",
+    slug: "kaftan-navy-blue",
+    imageUrl: "/images/blue-l-kaftan.png",
     images: [
-      "https://placehold.co/600x800/1e3a8a/white?text=Blue+Kaftan+Front",
-      "https://placehold.co/600x800/1e3a8a/white?text=Blue+Kaftan+Side",
-      "https://placehold.co/600x800/1e3a8a/white?text=Blue+Kaftan+Back"
+      "/images/blue-l-kaftan.png",
+      "/images/blue-l-kaftan-2.png",
+      "/images/blue-l-kaftan-3.png",
     ],
-    description: "Elegant royal blue kaftan with silver embroidery and premium fabric finish.",
+    description:
+      "Elegant navy blue kaftan with silver embroidery and premium fabric finish.",
     category: "Kaftans",
     availableSizes: ["S", "M", "L", "XL"],
     isMonogrammed: true,
@@ -60,65 +62,67 @@ export const allProducts: Product[] = [
       "Silver thread embroidery",
       "Custom monogram available",
       "Elegant and sophisticated design",
-      "Made to measure"
-    ]
+      "Made to measure",
+    ],
   },
   {
     id: "p3",
-    name: "Classic White Kaftan",
+    name: "Classic Off-White Kaftan",
     price: 70000,
-    slug: "kaftan-white-classic",
-    imageUrl: "https://placehold.co/600x800/ffffff/4a5d3f?text=White+Kaftan",
+    slug: "kaftan-off-white-classic",
+    imageUrl: "/images/off-white-kaftan.png",
     images: [
-      "https://placehold.co/600x800/ffffff/4a5d3f?text=White+Kaftan+Front",
-      "https://placehold.co/600x800/ffffff/4a5d3f?text=White+Kaftan+Side",
-      "https://placehold.co/600x800/ffffff/4a5d3f?text=White+Kaftan+Back"
+      "/images/off-white-kaftan.png",
+      "/images/off-white-kaftan-2.png",
+      "/images/off-white-kaftan-3.png",
     ],
-    description: "Pure white kaftan with subtle gold accents, perfect for special occasions.",
+    description:
+      "Pure white kaftan with subtle gray accents, perfect for special occasions.",
     category: "Kaftans",
     availableSizes: ["S", "M", "L", "XL", "XXL"],
     isMonogrammed: true,
     details: [
-      "Pure white premium fabric",
-      "Gold accent detailing",
+      "Off white premium fabric",
+      "Gray accent detailing",
       "Custom monogram service",
       "Ideal for ceremonies",
-      "Breathable material"
-    ]
+      "Breathable material",
+    ],
   },
   {
     id: "p4",
-    name: "Burgundy Luxury Kaftan",
+    name: "Brown Luxury Kaftan",
     price: 85000,
-    slug: "kaftan-burgundy",
-    imageUrl: "https://placehold.co/600x800/7f1d1d/white?text=Burgundy+Kaftan",
+    slug: "kaftan-brown",
+    imageUrl: "/images/brown-kaftan.png",
     images: [
-      "https://placehold.co/600x800/7f1d1d/white?text=Burgundy+Front",
-      "https://placehold.co/600x800/7f1d1d/white?text=Burgundy+Side",
-      "https://placehold.co/600x800/7f1d1d/white?text=Burgundy+Back"
+      "/images/brown-kaftan.png",
+      "/images/brown-kaftan-2.png",
+      "/images/brown-kaftan-3.png",
     ],
-    description: "Rich burgundy kaftan with intricate beadwork and premium silk material.",
+    description:
+      "Rich brown kaftan with intricate beadwork and premium silk material.",
     category: "Kaftans",
     availableSizes: ["M", "L", "XL"],
-    isMonogrammed: true,
+    isMonogrammed: false,
     details: [
-      "Rich burgundy color",
+      "Rich brown color",
       "Intricate beadwork",
       "Premium silk material",
       "Luxury finish",
-      "Custom tailored"
-    ]
+      "Custom tailored",
+    ],
   },
   {
     id: "p5",
     name: "Navy Ceremonial Kaftan",
     price: 78000,
     slug: "kaftan-navy-ceremonial",
-    imageUrl: "https://placehold.co/600x800/1e3a5f/white?text=Navy+Kaftan",
+    imageUrl: "/images/blue-s-kaftan.png",
     images: [
-      "https://placehold.co/600x800/1e3a5f/white?text=Navy+Front",
-      "https://placehold.co/600x800/1e3a5f/white?text=Navy+Side",
-      "https://placehold.co/600x800/1e3a5f/white?text=Navy+Back"
+      "/images/blue-s-kaftan.png",
+      "/images/blue-s-kaftan.png",
+      "/images/blue-s-kaftan.png",
     ],
     description: "Navy blue ceremonial kaftan with gold threading.",
     category: "Kaftans",
@@ -129,19 +133,19 @@ export const allProducts: Product[] = [
       "Gold thread detailing",
       "Ceremonial design",
       "Perfect for formal events",
-      "Custom monogram option"
-    ]
+      "Custom monogram option",
+    ],
   },
   {
     id: "p6",
     name: "Black Premium Kaftan",
     price: 82000,
     slug: "kaftan-black-premium",
-    imageUrl: "https://placehold.co/600x800/000000/white?text=Black+Kaftan",
+    imageUrl: "/images/black-s-kaftan.png",
     images: [
-      "https://placehold.co/600x800/000000/white?text=Black+Front",
-      "https://placehold.co/600x800/000000/white?text=Black+Side",
-      "https://placehold.co/600x800/000000/white?text=Black+Back"
+      "/images/black-s-kaftan.png",
+      "/images/black-s-kaftan-2.png",
+      "/images/black-s-kaftan-3.png",
     ],
     description: "Sophisticated black kaftan with silver accents.",
     category: "Kaftans",
@@ -152,13 +156,37 @@ export const allProducts: Product[] = [
       "Silver accent details",
       "Sophisticated design",
       "Versatile styling",
-      "Custom fit available"
-    ]
+      "Custom fit available",
+    ],
+  },
+
+  {
+    id: "p7",
+    name: "Blue Ceremonial Kaftan",
+    price: 78000,
+    slug: "kaftan-blue-ceremonial",
+    imageUrl: "/images/sky-blue-kaftan.png",
+    images: [
+      "/images/sky-blue-kaftan.png",
+      "/images/sky-blue-kaftan-2.png",
+      "/images/sky-blue-kaftan-3.png",
+    ],
+    description: "Blue ceremonial kaftan with gold threading.",
+    category: "Kaftans",
+    availableSizes: ["S", "M", "L", "XL"],
+    isMonogrammed: true,
+    details: [
+      "Navy blue premium fabric",
+      "Gold thread detailing",
+      "Ceremonial design",
+      "Perfect for formal events",
+      "Custom monogram option",
+    ],
   },
 
   // CAPS
   {
-    id: "p7",
+    id: "p8",
     name: "Aso Oke Fila Cap - Red",
     price: 15000,
     slug: "cap-aso-oke-red",
@@ -166,9 +194,10 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x600/dc2626/white?text=Red+Cap+Front",
       "https://placehold.co/600x600/dc2626/white?text=Red+Cap+Side",
-      "https://placehold.co/600x600/dc2626/white?text=Red+Cap+Top"
+      "https://placehold.co/600x600/dc2626/white?text=Red+Cap+Top",
     ],
-    description: "Traditional Nigerian cap made from authentic Aso Oke fabric in vibrant red.",
+    description:
+      "Traditional Nigerian cap made from authentic Aso Oke fabric in vibrant red.",
     category: "Caps",
     availableSizes: ["One Size"],
     isMonogrammed: false,
@@ -177,11 +206,11 @@ export const allProducts: Product[] = [
       "Handwoven traditional design",
       "Vibrant red color",
       "One size fits all",
-      "Cultural heritage piece"
-    ]
+      "Cultural heritage piece",
+    ],
   },
   {
-    id: "p8",
+    id: "9",
     name: "Aso Oke Fila Cap - Gold",
     price: 18000,
     slug: "cap-aso-oke-gold",
@@ -189,9 +218,10 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x600/d4af37/white?text=Gold+Cap+Front",
       "https://placehold.co/600x600/d4af37/white?text=Gold+Cap+Side",
-      "https://placehold.co/600x600/d4af37/white?text=Gold+Cap+Top"
+      "https://placehold.co/600x600/d4af37/white?text=Gold+Cap+Top",
     ],
-    description: "Premium gold Aso Oke cap with intricate threading and traditional design.",
+    description:
+      "Premium gold Aso Oke cap with intricate threading and traditional design.",
     category: "Caps",
     availableSizes: ["One Size"],
     isMonogrammed: false,
@@ -200,11 +230,11 @@ export const allProducts: Product[] = [
       "Intricate threading",
       "Traditional craftsmanship",
       "Adjustable fit",
-      "Luxury finish"
-    ]
+      "Luxury finish",
+    ],
   },
   {
-    id: "p9",
+    id: "p10",
     name: "Traditional Fila Cap - Blue",
     price: 16000,
     slug: "cap-traditional-blue",
@@ -212,9 +242,10 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x600/1e40af/white?text=Blue+Cap+Front",
       "https://placehold.co/600x600/1e40af/white?text=Blue+Cap+Side",
-      "https://placehold.co/600x600/1e40af/white?text=Blue+Cap+Top"
+      "https://placehold.co/600x600/1e40af/white?text=Blue+Cap+Top",
     ],
-    description: "Handwoven traditional cap in royal blue with fine craftsmanship.",
+    description:
+      "Handwoven traditional cap in royal blue with fine craftsmanship.",
     category: "Caps",
     availableSizes: ["One Size"],
     isMonogrammed: false,
@@ -223,11 +254,11 @@ export const allProducts: Product[] = [
       "Handwoven design",
       "Traditional style",
       "Comfortable fit",
-      "Quality craftsmanship"
-    ]
+      "Quality craftsmanship",
+    ],
   },
   {
-    id: "p10",
+    id: "p11",
     name: "Embroidered Fila Cap - White",
     price: 17000,
     slug: "cap-embroidered-white",
@@ -235,7 +266,7 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x600/ffffff/4a5d3f?text=White+Cap+Front",
       "https://placehold.co/600x600/ffffff/4a5d3f?text=White+Cap+Side",
-      "https://placehold.co/600x600/ffffff/4a5d3f?text=White+Cap+Top"
+      "https://placehold.co/600x600/ffffff/4a5d3f?text=White+Cap+Top",
     ],
     description: "White Fila cap with gold embroidery detailing.",
     category: "Caps",
@@ -246,11 +277,11 @@ export const allProducts: Product[] = [
       "Gold embroidery",
       "Elegant design",
       "Traditional style",
-      "Perfect for ceremonies"
-    ]
+      "Perfect for ceremonies",
+    ],
   },
   {
-    id: "p11",
+    id: "p12",
     name: "Luxury Fila Cap - Burgundy",
     price: 19000,
     slug: "cap-luxury-burgundy",
@@ -258,7 +289,7 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x600/7f1d1d/white?text=Burgundy+Cap+Front",
       "https://placehold.co/600x600/7f1d1d/white?text=Burgundy+Cap+Side",
-      "https://placehold.co/600x600/7f1d1d/white?text=Burgundy+Cap+Top"
+      "https://placehold.co/600x600/7f1d1d/white?text=Burgundy+Cap+Top",
     ],
     description: "Burgundy Fila cap with premium finish and luxurious feel.",
     category: "Caps",
@@ -269,13 +300,13 @@ export const allProducts: Product[] = [
       "Luxury finish",
       "High-quality material",
       "Comfortable fit",
-      "Statement piece"
-    ]
+      "Statement piece",
+    ],
   },
 
   // TROUSERS
   {
-    id: "p12",
+    id: "p13",
     name: "Linen Trousers - Olive Green",
     price: 35000,
     slug: "trousers-olive",
@@ -283,9 +314,10 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x800/4a5d3f/white?text=Olive+Front",
       "https://placehold.co/600x800/4a5d3f/white?text=Olive+Side",
-      "https://placehold.co/600x800/4a5d3f/white?text=Olive+Back"
+      "https://placehold.co/600x800/4a5d3f/white?text=Olive+Back",
     ],
-    description: "Comfortable linen trousers in olive green, perfect for any occasion.",
+    description:
+      "Comfortable linen trousers in olive green, perfect for any occasion.",
     category: "Trousers",
     availableSizes: ["30", "32", "34", "36", "38"],
     isMonogrammed: false,
@@ -294,11 +326,11 @@ export const allProducts: Product[] = [
       "Olive green color",
       "Comfortable fit",
       "Versatile styling",
-      "Perfect for casual and formal wear"
-    ]
+      "Perfect for casual and formal wear",
+    ],
   },
   {
-    id: "p13",
+    id: "p14",
     name: "Premium Black Trousers",
     price: 40000,
     slug: "trousers-black-premium",
@@ -306,7 +338,7 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x800/000000/white?text=Black+Front",
       "https://placehold.co/600x800/000000/white?text=Black+Side",
-      "https://placehold.co/600x800/000000/white?text=Black+Back"
+      "https://placehold.co/600x800/000000/white?text=Black+Back",
     ],
     description: "Classic black trousers with modern fit and premium fabric.",
     category: "Trousers",
@@ -317,11 +349,11 @@ export const allProducts: Product[] = [
       "Modern slim fit",
       "Versatile styling",
       "Perfect tailoring",
-      "All-occasion wear"
-    ]
+      "All-occasion wear",
+    ],
   },
   {
-    id: "p14",
+    id: "p15",
     name: "Beige Casual Trousers",
     price: 38000,
     slug: "trousers-beige-casual",
@@ -329,9 +361,10 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x800/d4a574/white?text=Beige+Front",
       "https://placehold.co/600x800/d4a574/white?text=Beige+Side",
-      "https://placehold.co/600x800/d4a574/white?text=Beige+Back"
+      "https://placehold.co/600x800/d4a574/white?text=Beige+Back",
     ],
-    description: "Lightweight beige trousers perfect for casual and formal wear.",
+    description:
+      "Lightweight beige trousers perfect for casual and formal wear.",
     category: "Trousers",
     availableSizes: ["32", "34", "36", "38"],
     isMonogrammed: false,
@@ -340,11 +373,11 @@ export const allProducts: Product[] = [
       "Beige neutral color",
       "Casual comfort",
       "Easy to style",
-      "Breathable material"
-    ]
+      "Breathable material",
+    ],
   },
   {
-    id: "p15",
+    id: "p16",
     name: "Navy Formal Trousers",
     price: 42000,
     slug: "trousers-navy-formal",
@@ -352,9 +385,10 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x800/1e3a5f/white?text=Navy+Front",
       "https://placehold.co/600x800/1e3a5f/white?text=Navy+Side",
-      "https://placehold.co/600x800/1e3a5f/white?text=Navy+Back"
+      "https://placehold.co/600x800/1e3a5f/white?text=Navy+Back",
     ],
-    description: "Navy formal trousers with perfect tailoring and premium finish.",
+    description:
+      "Navy formal trousers with perfect tailoring and premium finish.",
     category: "Trousers",
     availableSizes: ["30", "32", "34", "36", "38"],
     isMonogrammed: false,
@@ -363,11 +397,11 @@ export const allProducts: Product[] = [
       "Perfect tailoring",
       "Professional look",
       "Premium finish",
-      "Office appropriate"
-    ]
+      "Office appropriate",
+    ],
   },
   {
-    id: "p16",
+    id: "p17",
     name: "Grey Slim Fit Trousers",
     price: 39000,
     slug: "trousers-grey-slim",
@@ -375,7 +409,7 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x800/6b7280/white?text=Grey+Front",
       "https://placehold.co/600x800/6b7280/white?text=Grey+Side",
-      "https://placehold.co/600x800/6b7280/white?text=Grey+Back"
+      "https://placehold.co/600x800/6b7280/white?text=Grey+Back",
     ],
     description: "Modern slim fit trousers in charcoal grey.",
     category: "Trousers",
@@ -386,13 +420,13 @@ export const allProducts: Product[] = [
       "Slim fit design",
       "Modern style",
       "Premium fabric",
-      "Versatile wear"
-    ]
+      "Versatile wear",
+    ],
   },
 
   // READY-MADE WEARS
   {
-    id: "p17",
+    id: "p18",
     name: "Navy Blue Senator Wear",
     price: 55000,
     slug: "readymade-senator-navy",
@@ -400,7 +434,7 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x800/1e3a5f/white?text=Senator+Front",
       "https://placehold.co/600x800/1e3a5f/white?text=Senator+Side",
-      "https://placehold.co/600x800/1e3a5f/white?text=Senator+Back"
+      "https://placehold.co/600x800/1e3a5f/white?text=Senator+Back",
     ],
     description: "Complete navy blue senator outfit with matching trousers.",
     category: "Ready-Made Wears",
@@ -411,11 +445,11 @@ export const allProducts: Product[] = [
       "Navy blue color",
       "Matching trousers included",
       "Traditional style",
-      "Ready to wear"
-    ]
+      "Ready to wear",
+    ],
   },
   {
-    id: "p18",
+    id: "p19",
     name: "White Agbada Set",
     price: 95000,
     slug: "readymade-agbada-white",
@@ -423,9 +457,10 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x800/ffffff/4a5d3f?text=Agbada+Front",
       "https://placehold.co/600x800/ffffff/4a5d3f?text=Agbada+Side",
-      "https://placehold.co/600x800/ffffff/4a5d3f?text=Agbada+Back"
+      "https://placehold.co/600x800/ffffff/4a5d3f?text=Agbada+Back",
     ],
-    description: "Complete white Agbada set with intricate embroidery and cap included.",
+    description:
+      "Complete white Agbada set with intricate embroidery and cap included.",
     category: "Ready-Made Wears",
     availableSizes: ["L", "XL", "XXL"],
     isMonogrammed: true,
@@ -434,11 +469,11 @@ export const allProducts: Product[] = [
       "Pure white fabric",
       "Intricate embroidery",
       "Cap included",
-      "Premium quality"
-    ]
+      "Premium quality",
+    ],
   },
   {
-    id: "p19",
+    id: "p20",
     name: "Royal Blue Senator Set",
     price: 58000,
     slug: "readymade-senator-royal",
@@ -446,7 +481,7 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x800/1e3a8a/white?text=Royal+Front",
       "https://placehold.co/600x800/1e3a8a/white?text=Royal+Side",
-      "https://placehold.co/600x800/1e3a8a/white?text=Royal+Back"
+      "https://placehold.co/600x800/1e3a8a/white?text=Royal+Back",
     ],
     description: "Royal blue senator wear with matching cap.",
     category: "Ready-Made Wears",
@@ -457,11 +492,11 @@ export const allProducts: Product[] = [
       "Complete senator set",
       "Matching cap",
       "Traditional design",
-      "Premium fabric"
-    ]
+      "Premium fabric",
+    ],
   },
   {
-    id: "p20",
+    id: "p21",
     name: "Burgundy Agbada Complete",
     price: 98000,
     slug: "readymade-agbada-burgundy",
@@ -469,7 +504,7 @@ export const allProducts: Product[] = [
     images: [
       "https://placehold.co/600x800/7f1d1d/white?text=Burgundy+Front",
       "https://placehold.co/600x800/7f1d1d/white?text=Burgundy+Side",
-      "https://placehold.co/600x800/7f1d1d/white?text=Burgundy+Back"
+      "https://placehold.co/600x800/7f1d1d/white?text=Burgundy+Back",
     ],
     description: "Luxury burgundy Agbada with full accessories.",
     category: "Ready-Made Wears",
@@ -480,8 +515,8 @@ export const allProducts: Product[] = [
       "Complete Agbada set",
       "Full accessories",
       "Premium embroidery",
-      "Statement piece"
-    ]
+      "Statement piece",
+    ],
   },
 ];
 

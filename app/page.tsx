@@ -122,19 +122,19 @@ export default function HomePage() {
                   name: "Luxury Kaftans",
                   items: "6+ Styles",
                   href: "/collections/kaftans",
-                  emoji: "🎭",
+                  imageUrl: "/images/sky-blue-kaftan.png",
                 },
                 {
                   name: "Traditional Caps",
                   items: "5+ Designs",
                   href: "/collections/caps",
-                  emoji: "👑",
+                  imageUrl: "/images/black-l-kaftan.png",
                 },
                 {
                   name: "Premium Trousers",
                   items: "5+ Options",
                   href: "/collections/trousers",
-                  emoji: "👔",
+                  imageUrl: "/images/cream-kaftan.png",
                 },
               ].map((collection, idx) => (
                 <Link
@@ -143,7 +143,7 @@ export default function HomePage() {
                   className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 block"
                 >
                   <div className="aspect-[4/5] bg-[#e8efe6] flex items-center justify-center text-8xl">
-                    {collection.emoji}
+                    {collection.imageUrl}
                   </div>
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
                     <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
