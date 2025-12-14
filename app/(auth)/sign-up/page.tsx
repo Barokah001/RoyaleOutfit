@@ -1,14 +1,14 @@
-// app/(auth)/sign-in/page.tsx - Sign In Page (FIXED)
+// app/(auth)/sign-up/page.tsx - Sign Up Page
 // ============================================================
 "use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, Lock, LogIn } from "lucide-react";
+import { Mail, Lock, User, UserPlus } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function SignInPage() {
+export default function SignUpPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,11 +16,11 @@ export default function SignInPage() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate authentication (replace with real auth later)
+    // Simulate account creation (replace with real auth later)
     setTimeout(() => {
-      console.log("User signed in");
+      console.log("Account created");
       setIsLoading(false);
-      router.push("/"); // Redirect to homepage after sign in
+      router.push("/auth/sign-in"); // Redirect to sign in after signup
     }, 1000);
   };
 
@@ -33,13 +33,33 @@ export default function SignInPage() {
         className="w-full max-w-md rounded-lg bg-white p-8 shadow-2xl"
       >
         <h1 className="text-3xl font-bold text-center text-[#4a5d3f] mb-2">
-          Welcome Back
+          Create Account
         </h1>
         <p className="text-center text-gray-500 mb-8">
-          Sign in to access your account and saved items.
+          Join us and start shopping premium African attire
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Name Input */}
+          <div className="space-y-2">
+            <label
+              htmlFor="name"
+              className="text-sm font-medium text-gray-900"
+            >
+              Full Name
+            </label>
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+              <input
+                id="name"
+                type="text"
+                required
+                placeholder="John Doe"
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-4 text-gray-900 focus:border-[#4a5d3f] focus:ring-2 focus:ring-[#4a5d3f] focus:outline-none transition duration-150"
+              />
+            </div>
+          </div>
+
           {/* Email Input */}
           <div className="space-y-2">
             <label
@@ -74,17 +94,33 @@ export default function SignInPage() {
                 id="password"
                 type="password"
                 required
-                placeholder="Enter your password"
+                minLength={8}
+                placeholder="At least 8 characters"
                 className="w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-4 text-gray-900 focus:border-[#4a5d3f] focus:ring-2 focus:ring-[#4a5d3f] focus:outline-none transition duration-150"
               />
             </div>
-            <div className="text-right">
-              <Link
-                href="/auth/forgot-password"
-                className="text-xs font-medium text-[#4a5d3f] hover:underline"
-              >
-                Forgot Password?
-              </Link>
+            <p className="text-xs text-gray-500">
+              Must be at least 8 characters long
+            </p>
+          </div>
+
+          {/* Confirm Password Input */}
+          <div className="space-y-2">
+            <label
+              htmlFor="confirm-password"
+              className="text-sm font-medium text-gray-900"
+            >
+              Confirm Password
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+              <input
+                id="confirm-password"
+                type="password"
+                required
+                placeholder="Confirm your password"
+                className="w-full rounded-lg border border-gray-300 bg-gray-50 py-3 pl-10 pr-4 text-gray-900 focus:border-[#4a5d3f] focus:ring-2 focus:ring-[#4a5d3f] focus:outline-none transition duration-150"
+              />
             </div>
           </div>
 
@@ -96,23 +132,23 @@ export default function SignInPage() {
             className="w-full inline-flex items-center justify-center rounded-full bg-[#4a5d3f] px-4 py-3 text-lg font-semibold text-white transition-colors duration-300 hover:opacity-90 shadow-md disabled:opacity-50"
           >
             {isLoading ? (
-              <span>Signing in...</span>
+              <span>Creating account...</span>
             ) : (
               <>
-                <LogIn className="mr-2 h-5 w-5" />
-                Sign In
+                <UserPlus className="mr-2 h-5 w-5" />
+                Create Account
               </>
             )}
           </motion.button>
         </form>
 
         <p className="mt-8 text-center text-sm text-gray-600">
-          Don`&apos;t have an account?{" "}
+          Already have an account?{" "}
           <Link
-            href="/auth/sign-up"
+            href="/auth/sign-in"
             className="font-semibold text-[#4a5d3f] hover:underline"
           >
-            Create an account
+            Sign in
           </Link>
         </p>
       </motion.div>

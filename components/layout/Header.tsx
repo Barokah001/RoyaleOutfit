@@ -23,7 +23,7 @@ export function Header() {
           href="/"
           className="text-2xl font-bold tracking-tight text-[#4a5d3f] transition-colors hover:text-black"
         >
-          AFRICAN ATTIRE
+          ROYALE OUTFITS
         </Link>
 
         <nav className="hidden md:flex space-x-8">

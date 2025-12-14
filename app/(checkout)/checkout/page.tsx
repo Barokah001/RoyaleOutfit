@@ -1,182 +1,375 @@
-// app/(checkout)/checkout/page.tsx
+// app/checkout/page.tsx - Fixed useEffect Pattern
 "use client";
+
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { CreditCard, Truck, Lock, CheckCircle } from "lucide-react";
-import { useState } from "react";
+import { CreditCard, Building2, Smartphone, CheckCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  size: string;
+}
 
 export default function CheckoutPage() {
-  const [activeStep, setActiveStep] = useState(1);
-  const totalAmount = 130000;
+  const router = useRouter();
 
-  const steps = [
-    { id: 1, name: "Shipping", icon: Truck },
-    { id: 2, name: "Payment", icon: CreditCard },
-    { id: 3, name: "Review", icon: CheckCircle },
-  ];
-
-  const renderStepContent = (step: number) => {
-    switch (step) {
-      case 1:
-        return (
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold mb-4">Shipping Details</h3>
-            <input
-              placeholder="Full Name"
-              className="w-full rounded-lg border p-3"
-              required
-            />
-            <input
-              placeholder="Address Line 1"
-              className="w-full rounded-lg border p-3"
-              required
-            />
-            <div className="flex space-x-4">
-              <input
-                placeholder="City"
-                className="w-1/2 rounded-lg border p-3"
-                required
-              />
-              <input
-                placeholder="State"
-                className="w-1/2 rounded-lg border p-3"
-                required
-              />
-            </div>
-            <input
-              placeholder="Phone Number"
-              type="tel"
-              className="w-full rounded-lg border p-3"
-              required
-            />
-            <button
-              onClick={() => setActiveStep(2)}
-              className="w-full rounded-full bg-nigerian-olive px-6 py-3 text-lg font-semibold text-white transition-colors hover:bg-opacity-90 mt-4"
-            >
-              Continue to Payment
-            </button>
-          </div>
-        );
-      case 2:
-        return (
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold mb-4">Payment Information</h3>
-            <input
-              placeholder="Card Number"
-              type="text"
-              className="w-full rounded-lg border p-3"
-              required
-            />
-            <input
-              placeholder="Card Holder Name"
-              type="text"
-              className="w-full rounded-lg border p-3"
-              required
-            />
-            <div className="flex space-x-4">
-              <input
-                placeholder="MM/YY"
-                className="w-1/3 rounded-lg border p-3"
-                required
-              />
-              <input
-                placeholder="CVV"
-                className="w-1/3 rounded-lg border p-3"
-                required
-              />
-              <select
-                className="w-1/3 rounded-lg border p-3 bg-white"
-                defaultValue="Bank Transfer"
-              >
-                <option>Credit/Debit Card</option>
-                <option>Bank Transfer</option>
-                <option>USSD</option>
-              </select>
-            </div>
-            <button
-              onClick={() => setActiveStep(3)}
-              className="w-full rounded-full bg-nigerian-olive px-6 py-3 text-lg font-semibold text-white transition-colors hover:bg-opacity-90 mt-4"
-            >
-              Review Order
-            </button>
-            <button
-              onClick={() => setActiveStep(1)}
-              className="w-full text-sm text-gray-500 hover:text-nigerian-olive mt-2"
-            >
-              &larr; Back to Shipping
-            </button>
-          </div>
-        );
-      case 3:
-        return (
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold mb-4">Final Review</h3>
-            <div className="p-4 border border-nigerian-olive/50 rounded-lg bg-light-green-50/70">
-              <p className="font-semibold text-lg">
-                Shipping to: John Doe, 123 Main St, Lagos.
-              </p>
-              <p className="text-gray-600 mt-2">
-                Payment Method: **** 1234 (Mastercard)
-              </p>
-            </div>
-            <div className="flex justify-between text-xl font-bold border-t pt-4">
-              <span>Grand Total:</span>
-              <span className="text-nigerian-olive">
-                ₦{totalAmount.toLocaleString()}
-              </span>
-            </div>
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              className="w-full inline-flex items-center justify-center rounded-full bg-nigerian-olive px-6 py-4 text-xl font-extrabold text-white shadow-xl transition-colors duration-300 hover:bg-opacity-90"
-              onClick={() => alert("Payment Processed!")} // Final Action
-            >
-              <Lock className="mr-3 h-5 w-5" />
-              Pay Now ₦{totalAmount.toLocaleString()}
-            </motion.button>
-          </div>
-        );
-      default:
-        return null;
+  // Initialize cart from localStorage using lazy initialization
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    if (typeof window !== "undefined") {
+      const savedCart = localStorage.getItem("cart");
+      return savedCart ? JSON.parse(savedCart) : [];
     }
+    return [];
+  });
+
+  const [selectedPayment, setSelectedPayment] = useState<string>("card");
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [orderComplete, setOrderComplete] = useState(false);
+
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  const shipping = subtotal > 50000 ? 0 : 5000;
+  const total = subtotal + shipping;
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsProcessing(true);
+
+    // Simulate payment processing
+    setTimeout(() => {
+      setIsProcessing(false);
+      setOrderComplete(true);
+
+      // Clear cart after successful order
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("cart");
+      }
+
+      // Redirect to success page after 3 seconds
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
+    }, 2000);
   };
 
+  if (orderComplete) {
+    return (
+      <div className="container mx-auto py-12 px-4 min-h-screen flex items-center justify-center">
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="max-w-md text-center bg-white p-8 rounded-xl shadow-lg"
+        >
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="h-12 w-12 text-green-600" />
+          </div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            Order Successful!
+          </h1>
+          <p className="text-gray-600 mb-6">
+            Thank you for your purchase. Your order has been confirmed and will
+            be shipped soon.
+          </p>
+          <p className="text-sm text-gray-500">Redirecting to homepage...</p>
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="container mx-auto py-12 px-4 min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            No Items to Checkout
+          </h1>
+          <p className="text-gray-600 mb-6">Your cart is empty.</p>
+          <a
+            href="/products"
+            className="inline-flex items-center justify-center rounded-full bg-[#4a5d3f] px-8 py-3 text-lg font-semibold text-white shadow-lg transition-colors duration-300 hover:opacity-90"
+          >
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex justify-center">
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-4xl bg-white p-8 rounded-xl shadow-2xl shadow-nigerian-olive/10"
-      >
-        <div className="flex justify-between mb-8">
-          {steps.map((step) => (
-            <div key={step.id} className="flex flex-col items-center">
-              <div
-                className={`flex h-12 w-12 items-center justify-center rounded-full border-2 
-                  ${
-                    step.id <= activeStep
-                      ? "border-nigerian-olive bg-nigerian-olive text-white"
-                      : "border-gray-300 bg-white text-gray-400"
-                  }`}
-              >
-                <step.icon className="h-6 w-6" />
+    <div className="container mx-auto py-12 px-4 min-h-screen">
+      <h1 className="text-4xl font-extrabold text-gray-900 mb-8">Checkout</h1>
+
+      <div className="flex flex-col lg:flex-row gap-10">
+        {/* Checkout Form */}
+        <div className="lg:w-3/5">
+          <form onSubmit={handleSubmit} className="space-y-8">
+            {/* Shipping Information */}
+            <div className="bg-white p-6 rounded-xl shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Shipping Information
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    First Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Last Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                  />
+                </div>
               </div>
-              <p
-                className={`mt-2 text-sm font-medium ${
-                  step.id <= activeStep
-                    ? "text-nigerian-olive"
-                    : "text-gray-500"
-                }`}
-              >
-                {step.name}
-              </p>
+
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                />
+              </div>
+
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="+234 800 000 0000"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                />
+              </div>
+
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Address *
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Street address"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    City *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    State *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Postal Code
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                  />
+                </div>
+              </div>
             </div>
-          ))}
+
+            {/* Payment Method */}
+            <div className="bg-white p-6 rounded-xl shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Payment Method
+              </h2>
+
+              <div className="space-y-3">
+                {/* Card Payment */}
+                <label
+                  className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                    selectedPayment === "card"
+                      ? "border-[#4a5d3f] bg-[#f5f9f5]"
+                      : "border-gray-200"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="card"
+                    checked={selectedPayment === "card"}
+                    onChange={(e) => setSelectedPayment(e.target.value)}
+                    className="mr-3"
+                  />
+                  <CreditCard className="h-5 w-5 mr-3 text-[#4a5d3f]" />
+                  <span className="font-medium">Credit/Debit Card</span>
+                </label>
+
+                {/* Bank Transfer */}
+                <label
+                  className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                    selectedPayment === "transfer"
+                      ? "border-[#4a5d3f] bg-[#f5f9f5]"
+                      : "border-gray-200"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="transfer"
+                    checked={selectedPayment === "transfer"}
+                    onChange={(e) => setSelectedPayment(e.target.value)}
+                    className="mr-3"
+                  />
+                  <Building2 className="h-5 w-5 mr-3 text-[#4a5d3f]" />
+                  <span className="font-medium">Bank Transfer</span>
+                </label>
+
+                {/* Mobile Money */}
+                <label
+                  className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                    selectedPayment === "mobile"
+                      ? "border-[#4a5d3f] bg-[#f5f9f5]"
+                      : "border-gray-200"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="payment"
+                    value="mobile"
+                    checked={selectedPayment === "mobile"}
+                    onChange={(e) => setSelectedPayment(e.target.value)}
+                    className="mr-3"
+                  />
+                  <Smartphone className="h-5 w-5 mr-3 text-[#4a5d3f]" />
+                  <span className="font-medium">Mobile Payment</span>
+                </label>
+              </div>
+
+              {/* Payment Details (shown only for card) */}
+              {selectedPayment === "card" && (
+                <div className="mt-6 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Card Number *
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="1234 5678 9012 3456"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Expiry Date *
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="MM/YY"
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        CVV *
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="123"
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#4a5d3f] focus:border-transparent"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              disabled={isProcessing}
+              className="w-full bg-[#4a5d3f] text-white py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+            >
+              {isProcessing
+                ? "Processing Payment..."
+                : `Pay ₦${total.toLocaleString()}`}
+            </button>
+          </form>
         </div>
 
-        <div className="mt-8 p-6 border-t pt-6">
-          {renderStepContent(activeStep)}
+        {/* Order Summary */}
+        <div className="lg:w-2/5">
+          <div className="bg-white p-6 rounded-xl shadow-md sticky top-24">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Order Summary
+            </h2>
+
+            <div className="space-y-4 mb-6">
+              {cartItems.map((item) => (
+                <div key={item.id} className="flex justify-between text-sm">
+                  <div>
+                    <p className="font-medium text-gray-900">{item.name}</p>
+                    <p className="text-gray-500">
+                      Size: {item.size} × {item.quantity}
+                    </p>
+                  </div>
+                  <p className="font-medium text-gray-900">
+                    ₦{(item.price * item.quantity).toLocaleString()}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="border-t pt-4 space-y-2">
+              <div className="flex justify-between text-gray-600">
+                <span>Subtotal</span>
+                <span>₦{subtotal.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between text-gray-600">
+                <span>Shipping</span>
+                <span>
+                  {shipping === 0 ? "FREE" : `₦${shipping.toLocaleString()}`}
+                </span>
+              </div>
+              <div className="flex justify-between text-xl font-bold text-gray-900 pt-2 border-t">
+                <span>Total</span>
+                <span>₦{total.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

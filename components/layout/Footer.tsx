@@ -33,7 +33,7 @@ export function Footer() {
             href="/"
             className="text-3xl font-bold tracking-tight text-[#d4af37] transition-colors hover:text-[#e5c158]"
           >
-            AFRICAN ATTIRE
+            ROYALE OUTFITS
           </Link>
           <p className="mt-4 text-sm text-gray-300">
             Premium Nigerian Kaftans, Caps, and Ready-Made Wears. Crafted with
@@ -70,7 +70,7 @@ export function Footer() {
       </div>
 
       <div className="mt-10 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} AFRICAN ATTIRE. All rights reserved.
+        &copy; {new Date().getFullYear()} ROYALE OUTFITS. All rights reserved.
       </div>
     </footer>
   );
