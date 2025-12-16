@@ -1,14 +1,22 @@
-// app/product/[slug]/page.tsx - SIMPLIFIED VERSION
+// app/product/[slug]/page.tsx - Fixed TypeScript Errors
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ShoppingCart, CheckCircle, Minus, Plus, ChevronLeft } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+import {
+  ShoppingCart,
+  CheckCircle,
+  Minus,
+  Plus,
+  ChevronLeft,
+} from "lucide-react";
 import { useState, use } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { getProductBySlug } from "@/lib/productData";
+import { addToCart } from "@/lib/cartUtils";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -18,21 +26,29 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, x: -50 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 100, damping: 20 },
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 20,
+    },
   },
 };
 
-const imageVariants = {
+const imageVariants: Variants = {
   hidden: { opacity: 0, x: 50 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 100, damping: 20 },
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 20,
+    },
   },
 };
 
@@ -41,9 +57,10 @@ export default function ProductDetailPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const router = useRouter();
   const { slug } = use(params);
   const product = getProductBySlug(slug);
-  
+
   const [selectedSize, setSelectedSize] = useState<string>(
     product.availableSizes[0]
   );
@@ -52,14 +69,49 @@ export default function ProductDetailPage({
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 
   const handleAddToCart = () => {
+    // Add to cart using the utility function
+    addToCart(
+      {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        slug: product.slug,
+      },
+      selectedSize,
+      quantity
+    );
+
+    // Show success message
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
+
+    // Trigger a custom event to update cart count in header
+    window.dispatchEvent(new Event("cartUpdated"));
+  };
+
+  const handleBuyNow = () => {
+    // Add to cart first
+    addToCart(
+      {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        slug: product.slug,
+      },
+      selectedSize,
+      quantity
+    );
+
+    // Navigate to checkout
+    router.push("/checkout");
   };
 
   return (
     <div className="min-h-screen bg-[#faf9f6]">
       <div className="container mx-auto py-8 px-4">
-        <Link 
+        <Link
           href="/products"
           className="inline-flex items-center text-gray-600 hover:text-[#4a5d3f] mb-6 transition-colors"
         >
@@ -74,10 +126,7 @@ export default function ProductDetailPage({
           className="flex flex-col lg:flex-row gap-8 lg:gap-12 bg-white p-6 md:p-10 rounded-xl shadow-lg"
         >
           {/* Image Gallery Section */}
-          <motion.div
-            variants={imageVariants}
-            className="lg:w-1/2"
-          >
+          <motion.div variants={imageVariants} className="lg:w-1/2">
             {/* Main Image */}
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl shadow-xl border-2 border-gray-200 mb-4">
               <Image
@@ -117,10 +166,7 @@ export default function ProductDetailPage({
           </motion.div>
 
           {/* Product Info Section */}
-          <motion.div
-            variants={itemVariants}
-            className="lg:w-1/2"
-          >
+          <motion.div variants={itemVariants} className="lg:w-1/2">
             <p className="text-sm font-semibold uppercase text-gray-500 mb-2">
               {product.category}
             </p>
@@ -175,69 +221,82 @@ export default function ProductDetailPage({
             </motion.div>
 
             {/* Quantity and Add to Cart */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-8"
-            >
-              <div className="flex items-center border-2 border-gray-300 rounded-lg p-1">
-                <button
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="p-3 text-gray-600 hover:text-[#4a5d3f] transition-colors"
-                >
-                  <Minus className="h-4 w-4" />
-                </button>
-                <span className="w-12 text-center text-lg font-medium">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => setQuantity((q) => q + 1)}
-                  className="p-3 text-gray-600 hover:text-[#4a5d3f] transition-colors"
-                >
-                  <Plus className="h-4 w-4" />
-                </button>
+            <motion.div variants={itemVariants} className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="flex items-center border-2 border-gray-300 rounded-lg">
+                  <button
+                    onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                    className="p-3 text-gray-600 hover:text-[#4a5d3f] transition-colors"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <span className="px-6 text-lg font-medium">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity((q) => q + 1)}
+                    className="p-3 text-gray-600 hover:text-[#4a5d3f] transition-colors"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
 
-              <motion.button
-                onClick={handleAddToCart}
-                whileTap={{ scale: 0.95 }}
-                className="flex-1 inline-flex items-center justify-center rounded-full bg-[#4a5d3f] px-8 py-3 text-lg font-medium text-white shadow-lg transition-all duration-300 hover:opacity-90"
-              >
-                {isAdded ? (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="flex items-center space-x-2"
-                  >
-                    <CheckCircle className="h-5 w-5" />
-                    <span>Added to Cart!</span>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="flex items-center space-x-2"
-                  >
-                    <ShoppingCart className="h-5 w-5" />
-                    <span>Add to Cart</span>
-                  </motion.div>
-                )}
-              </motion.button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <motion.button
+                  onClick={handleAddToCart}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-1 inline-flex items-center justify-center rounded-full border-2 border-[#4a5d3f] px-8 py-3 text-lg font-medium text-[#4a5d3f] bg-white hover:bg-[#4a5d3f] hover:text-white transition-all duration-300"
+                >
+                  {isAdded ? (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="flex items-center space-x-2"
+                    >
+                      <CheckCircle className="h-5 w-5" />
+                      <span>Added!</span>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="flex items-center space-x-2"
+                    >
+                      <ShoppingCart className="h-5 w-5" />
+                      <span>Add to Cart</span>
+                    </motion.div>
+                  )}
+                </motion.button>
+
+                <motion.button
+                  onClick={handleBuyNow}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-1 inline-flex items-center justify-center rounded-full bg-[#4a5d3f] px-8 py-3 text-lg font-medium text-white shadow-lg transition-all duration-300 hover:opacity-90"
+                >
+                  Buy Now
+                </motion.button>
+              </div>
             </motion.div>
 
             {/* Additional Info */}
             <div className="mt-8 pt-8 border-t border-gray-200">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
                 <div>
-                  <span className="font-semibold text-gray-900">SKU:</span> {product.id}
+                  <span className="font-semibold text-gray-900">SKU:</span>{" "}
+                  {product.id}
                 </div>
                 <div>
-                  <span className="font-semibold text-gray-900">Category:</span> {product.category}
+                  <span className="font-semibold text-gray-900">Category:</span>{" "}
+                  {product.category}
                 </div>
                 <div>
-                  <span className="font-semibold text-gray-900">Availability:</span> In Stock
+                  <span className="font-semibold text-gray-900">
+                    Availability:
+                  </span>{" "}
+                  In Stock
                 </div>
                 <div>
-                  <span className="font-semibold text-gray-900">Shipping:</span> Free shipping over ₦50,000
+                  <span className="font-semibold text-gray-900">Shipping:</span>{" "}
+                  Free over ₦50,000
                 </div>
               </div>
             </div>

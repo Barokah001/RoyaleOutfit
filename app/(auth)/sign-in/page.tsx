@@ -1,5 +1,4 @@
-// app/(auth)/sign-in/page.tsx - Sign In Page (FIXED)
-// ============================================================
+// app/(auth)/sign-in/page.tsx - Create this file separately
 "use client";
 
 import Link from "next/link";
@@ -107,9 +106,9 @@ export default function SignInPage() {
         </form>
 
         <p className="mt-8 text-center text-sm text-gray-600">
-          Don`&apos;t have an account?{" "}
+          Don`&apos;`t have an account?{" "}
           <Link
-            href="/auth/sign-up"
+            href="/sign-up"
             className="font-semibold text-[#4a5d3f] hover:underline"
           >
             Create an account

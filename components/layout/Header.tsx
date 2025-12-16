@@ -1,10 +1,10 @@
-// components/layout/Header.tsx - UPDATED WITH NEW COLORS
-// ============================================================
+// components/layout/Header.tsx - With Dynamic Cart Count
 "use client";
 
 import Link from "next/link";
 import { ShoppingCart, User, Menu, Search, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCartCount } from "@/lib/cartUtils";
 
 const navLinks = [
   { href: "/collections/kaftans", label: "Kaftans" },
@@ -15,6 +15,25 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  // Update cart count on mount and when cart changes
+  useEffect(() => {
+    const updateCartCount = () => {
+      setCartCount(getCartCount());
+    };
+
+    // Initial load
+    updateCartCount();
+
+    // Listen for cart updates
+    window.addEventListener("cartUpdated", updateCartCount);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("cartUpdated", updateCartCount);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
@@ -48,7 +67,7 @@ export function Header() {
           </button>
 
           <Link
-            href="/auth/sign-in"
+            href="/sign-in"
             className="p-2 rounded-full hover:bg-gray-100 transition-colors"
             title="Account"
           >
@@ -61,9 +80,11 @@ export function Header() {
             title="Shopping Cart"
           >
             <ShoppingCart className="h-5 w-5 text-[#4a5d3f]" />
-            <span className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#4a5d3f] text-xs font-bold text-white leading-none p-1">
-              0
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#4a5d3f] text-xs font-bold text-white leading-none">
+                {cartCount > 9 ? "9+" : cartCount}
+              </span>
+            )}
           </Link>
 
           <button
@@ -100,4 +121,3 @@ export function Header() {
     </header>
   );
 }
-

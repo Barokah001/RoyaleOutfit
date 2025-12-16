@@ -1,5 +1,4 @@
-// app/(auth)/sign-up/page.tsx - Sign Up Page
-// ============================================================
+// app/(auth)/sign-up/page.tsx - Create this file separately
 "use client";
 
 import Link from "next/link";
@@ -20,7 +19,7 @@ export default function SignUpPage() {
     setTimeout(() => {
       console.log("Account created");
       setIsLoading(false);
-      router.push("/auth/sign-in"); // Redirect to sign in after signup
+      router.push("/sign-in"); // Redirect to sign in after signup
     }, 1000);
   };
 
@@ -145,7 +144,7 @@ export default function SignUpPage() {
         <p className="mt-8 text-center text-sm text-gray-600">
           Already have an account?{" "}
           <Link
-            href="/auth/sign-in"
+            href="/sign-in"
             className="font-semibold text-[#4a5d3f] hover:underline"
           >
             Sign in

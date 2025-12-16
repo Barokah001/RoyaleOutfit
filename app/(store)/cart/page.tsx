@@ -26,12 +26,9 @@ export default function CartPage() {
     }
     return [];
   });
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Set loading to false after mount
-  useEffect(() => {
-    setIsLoading(false);
-  }, []);
+
 
   // Save cart to localStorage whenever it changes (after initial load)
   useEffect(() => {
