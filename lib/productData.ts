@@ -183,18 +183,41 @@ export const allProducts: Product[] = [
       "Custom monogram option",
     ],
   },
+  {
+    id: "p8",
+    name: "Elegant Cream Kaftan",
+    price: 78000,
+    slug: "kaftan-cream-elegant",
+    imageUrl: "/images/cream-kaftan.png",
+    images: [
+      "/images/cream-kaftan.png",
+      "/images/cream-kaftan-2.png",
+      "/images/cream-kaftan-3.png",
+    ],
+    description: "Elegant cream kaftan with gold threading.",
+    category: "Kaftans",
+    availableSizes: ["S", "M", "L", "XL"],
+    isMonogrammed: true,
+    details: [
+      "Cream premium fabric",
+      "Gold thread detailing",
+      "Elegant design",
+      "Perfect for formal events",
+      "Custom monogram option",
+    ],
+  },
 
   // CAPS
   {
-    id: "p8",
-    name: "Aso Oke Fila Cap - Red",
+    id: "p9",
+    name: "AsNo Oke Fila",
     price: 15000,
     slug: "cap-aso-oke-red",
-    imageUrl: "https://placehold.co/600x600/dc2626/white?text=Red+Cap",
+    imageUrl: "/images/cap-1.jpeg",
     images: [
-      "https://placehold.co/600x600/dc2626/white?text=Red+Cap+Front",
-      "https://placehold.co/600x600/dc2626/white?text=Red+Cap+Side",
-      "https://placehold.co/600x600/dc2626/white?text=Red+Cap+Top",
+      "/images/cap-1.jpeg",
+      "/images/cap-1.jpeg",
+      "/images/cap-1.jpeg",
     ],
     description:
       "Traditional Nigerian cap made from authentic Aso Oke fabric in vibrant red.",
@@ -210,15 +233,15 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "9",
+    id: "10",
     name: "Aso Oke Fila Cap - Gold",
     price: 18000,
     slug: "cap-aso-oke-gold",
-    imageUrl: "https://placehold.co/600x600/d4af37/white?text=Gold+Cap",
+    imageUrl: "/images/cap-2.jpeg",
     images: [
-      "https://placehold.co/600x600/d4af37/white?text=Gold+Cap+Front",
-      "https://placehold.co/600x600/d4af37/white?text=Gold+Cap+Side",
-      "https://placehold.co/600x600/d4af37/white?text=Gold+Cap+Top",
+      "/images/cap-2.jpeg",
+      "/images/cap-2.jpeg",
+      "/images/cap-2.jpeg",
     ],
     description:
       "Premium gold Aso Oke cap with intricate threading and traditional design.",
@@ -234,15 +257,15 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p10",
+    id: "p11",
     name: "Traditional Fila Cap - Blue",
     price: 16000,
     slug: "cap-traditional-blue",
-    imageUrl: "https://placehold.co/600x600/1e40af/white?text=Blue+Cap",
+    imageUrl: "/images/cap-3.jpeg",
     images: [
-      "https://placehold.co/600x600/1e40af/white?text=Blue+Cap+Front",
-      "https://placehold.co/600x600/1e40af/white?text=Blue+Cap+Side",
-      "https://placehold.co/600x600/1e40af/white?text=Blue+Cap+Top",
+      "/images/cap-3.jpeg",
+      "/images/cap-3.jpeg",
+      "/images/cap-3.jpeg",
     ],
     description:
       "Handwoven traditional cap in royal blue with fine craftsmanship.",
@@ -258,15 +281,15 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p11",
+    id: "p12",
     name: "Embroidered Fila Cap - White",
     price: 17000,
     slug: "cap-embroidered-white",
-    imageUrl: "https://placehold.co/600x600/ffffff/4a5d3f?text=White+Cap",
+    imageUrl: "/images/cap-4.jpeg",
     images: [
-      "https://placehold.co/600x600/ffffff/4a5d3f?text=White+Cap+Front",
-      "https://placehold.co/600x600/ffffff/4a5d3f?text=White+Cap+Side",
-      "https://placehold.co/600x600/ffffff/4a5d3f?text=White+Cap+Top",
+      "/images/cap-4.jpeg",
+      "/images/cap-4.jpeg",
+      "/images/cap-4.jpeg",
     ],
     description: "White Fila cap with gold embroidery detailing.",
     category: "Caps",
@@ -281,15 +304,38 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p12",
+    id: "p13",
     name: "Luxury Fila Cap - Burgundy",
     price: 19000,
     slug: "cap-luxury-burgundy",
-    imageUrl: "https://placehold.co/600x600/7f1d1d/white?text=Burgundy+Cap",
+    imageUrl: "/images/cap-5.jpeg",
     images: [
-      "https://placehold.co/600x600/7f1d1d/white?text=Burgundy+Cap+Front",
-      "https://placehold.co/600x600/7f1d1d/white?text=Burgundy+Cap+Side",
-      "https://placehold.co/600x600/7f1d1d/white?text=Burgundy+Cap+Top",
+      "/images/cap-5.jpeg",
+      "/images/cap-5.jpeg",
+      "/images/cap-5.jpeg",
+    ],
+    description: "Burgundy Fila cap with premium finish and luxurious feel.",
+    category: "Caps",
+    availableSizes: ["One Size"],
+    isMonogrammed: false,
+    details: [
+      "Burgundy premium fabric",
+      "Luxury finish",
+      "High-quality material",
+      "Comfortable fit",
+      "Statement piece",
+    ],
+  },
+  {
+    id: "p14",
+    name: "Luxury Fila Cap - Burgundy",
+    price: 19000,
+    slug: "cap-luxury-burgundy",
+    imageUrl: "/images/cap-6.jpeg",
+    images: [
+      "/images/cap-6.jpeg",
+      "/images/cap-6.jpeg",
+      "/images/cap-6.jpeg",
     ],
     description: "Burgundy Fila cap with premium finish and luxurious feel.",
     category: "Caps",
@@ -306,7 +352,7 @@ export const allProducts: Product[] = [
 
   // TROUSERS
   {
-    id: "p13",
+    id: "p15",
     name: "Linen Trousers - Olive Green",
     price: 35000,
     slug: "trousers-olive",
@@ -330,7 +376,7 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p14",
+    id: "p16",
     name: "Premium Black Trousers",
     price: 40000,
     slug: "trousers-black-premium",
@@ -353,7 +399,7 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p15",
+    id: "p17",
     name: "Beige Casual Trousers",
     price: 38000,
     slug: "trousers-beige-casual",
@@ -377,7 +423,7 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p16",
+    id: "p18",
     name: "Navy Formal Trousers",
     price: 42000,
     slug: "trousers-navy-formal",
@@ -401,7 +447,7 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p17",
+    id: "p19",
     name: "Grey Slim Fit Trousers",
     price: 39000,
     slug: "trousers-grey-slim",
@@ -426,7 +472,7 @@ export const allProducts: Product[] = [
 
   // READY-MADE WEARS
   {
-    id: "p18",
+    id: "p20",
     name: "Navy Blue Senator Wear",
     price: 55000,
     slug: "readymade-senator-navy",
@@ -449,7 +495,7 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p19",
+    id: "p21",
     name: "White Agbada Set",
     price: 95000,
     slug: "readymade-agbada-white",
@@ -473,7 +519,7 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p20",
+    id: "p22",
     name: "Royal Blue Senator Set",
     price: 58000,
     slug: "readymade-senator-royal",
@@ -496,7 +542,7 @@ export const allProducts: Product[] = [
     ],
   },
   {
-    id: "p21",
+    id: "p23",
     name: "Burgundy Agbada Complete",
     price: 98000,
     slug: "readymade-agbada-burgundy",
