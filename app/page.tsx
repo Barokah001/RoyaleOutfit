@@ -2,6 +2,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+
 import { motion } from "framer-motion";
 import {
   ShoppingBag,
@@ -122,13 +124,13 @@ export default function HomePage() {
                   name: "Luxury Kaftans",
                   items: "6+ Styles",
                   href: "/collections/kaftans",
-                  imageUrl: "/images/sky-blue-kaftan.png",
+                  imageUrl: "/images/kaftan-grid.png",
                 },
                 {
                   name: "Traditional Caps",
                   items: "5+ Designs",
                   href: "/collections/caps",
-                  imageUrl: "/images/black-l-kaftan.png",
+                  imageUrl: "/images/cap-grid.jpeg",
                 },
                 {
                   name: "Premium Trousers",
@@ -142,9 +144,16 @@ export default function HomePage() {
                   href={collection.href}
                   className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 block"
                 >
-                  <div className="aspect-[4/5] bg-[#e8efe6] flex items-center justify-center text-8xl">
-                    {collection.imageUrl}
-                  </div>
+                  <div className="relative aspect-[4/5]">
+  <Image
+    src={collection.imageUrl}
+    alt={collection.name}
+    fill
+    className="object-cover"
+    priority={idx === 0}
+  />
+</div>
+
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
                     <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
                       <h3 className="text-2xl font-bold mb-2">
