@@ -145,14 +145,14 @@ export default function HomePage() {
                   className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 block"
                 >
                   <div className="relative aspect-[4/5]">
-  <Image
-    src={collection.imageUrl}
-    alt={collection.name}
-    fill
-    className="object-cover"
-    priority={idx === 0}
-  />
-</div>
+                    <Image
+                      src={collection.imageUrl}
+                      alt={collection.name}
+                      fill
+                      className="object-cover"
+                      priority={idx === 0}
+                    />
+                  </div>
 
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
                     <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
