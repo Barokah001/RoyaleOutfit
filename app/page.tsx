@@ -1,9 +1,8 @@
-// app/page.tsx - FIXED with Navbar & Footer
+// app/page.tsx - Fixed Collections Display
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-
 import { motion } from "framer-motion";
 import {
   ShoppingBag,
@@ -18,6 +17,30 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
 export default function HomePage() {
+  const collections = [
+    {
+      name: "Luxury Kaftans",
+      items: "6+ Styles",
+      href: "/collections/kaftans",
+      color: "#4a5d3f",
+      imageUrl: "/images/kaftan-grid.png",
+    },
+    {
+      name: "Traditional Caps",
+      items: "5+ Designs",
+      href: "/collections/caps",
+      color: "#d4af37",
+      imageUrl: "/images/cap-grid.jpeg",
+    },
+    {
+      name: "Premium Trousers",
+      items: "5+ Options",
+      href: "/collections/trousers",
+      color: "#6b8060",
+      imageUrl: "/images/cream-kaftan.png",
+    },
+  ];
+
   return (
     <>
       <Header />
@@ -119,47 +142,37 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: "Luxury Kaftans",
-                  items: "6+ Styles",
-                  href: "/collections/kaftans",
-                  imageUrl: "/images/kaftan-grid.png",
-                },
-                {
-                  name: "Traditional Caps",
-                  items: "5+ Designs",
-                  href: "/collections/caps",
-                  imageUrl: "/images/cap-grid.jpeg",
-                },
-                {
-                  name: "Premium Trousers",
-                  items: "5+ Options",
-                  href: "/collections/trousers",
-                  imageUrl: "/images/cream-kaftan.png",
-                },
-              ].map((collection, idx) => (
+              {collections.map((collection, idx) => (
                 <Link
                   key={idx}
                   href={collection.href}
                   className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 block"
                 >
-                  <div className="relative aspect-[4/5]">
+                  {/* Image Container with fixed aspect ratio */}
+                  <div className="relative w-full aspect-[4/5] bg-gray-100">
                     <Image
                       src={collection.imageUrl}
                       alt={collection.name}
                       fill
-                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                       priority={idx === 0}
                     />
-                  </div>
 
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
-                    <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
-                      <h3 className="text-2xl font-bold mb-2">
+                    {/* Dark overlay for better text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
+
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-[#4a5d3f] bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 z-20" />
+
+                    {/* Text Overlay - Always Visible */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-center z-30">
+                      <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-lg">
                         {collection.name}
                       </h3>
-                      <p className="text-sm">{collection.items}</p>
+                      <p className="text-sm text-white/90 drop-shadow-md">
+                        {collection.items}
+                      </p>
                     </div>
                   </div>
                 </Link>
@@ -173,7 +186,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Why Choose African Attire
+                Why Choose Royale Outfits
               </h2>
             </div>
 
