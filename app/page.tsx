@@ -22,21 +22,18 @@ export default function HomePage() {
       name: "Luxury Kaftans",
       items: "6+ Styles",
       href: "/collections/kaftans",
-      color: "#4a5d3f",
       imageUrl: "/images/kaftan-grid.png",
     },
     {
       name: "Traditional Caps",
       items: "5+ Designs",
       href: "/collections/caps",
-      color: "#d4af37",
       imageUrl: "/images/cap-grid.jpeg",
     },
     {
       name: "Premium Trousers",
       items: "5+ Options",
       href: "/collections/trousers",
-      color: "#6b8060",
       imageUrl: "/images/cream-kaftan.png",
     },
   ];
@@ -143,34 +140,30 @@ export default function HomePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {collections.map((collection, idx) => (
-                <Link
-                  key={idx}
-                  href={collection.href}
-                  className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 block"
-                >
-                  {/* Image Container with fixed aspect ratio */}
-                  <div className="relative w-full aspect-[4/5] bg-gray-100">
+                <Link key={idx} href={collection.href} className="group block">
+                  <div className="relative w-full h-[500px] overflow-hidden rounded-xl shadow-md group-hover:shadow-2xl transition-all duration-300">
+                    {/* Background Image */}
                     <Image
                       src={collection.imageUrl}
                       alt={collection.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                       priority={idx === 0}
                     />
 
-                    {/* Dark overlay for better text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
+                    {/* Gradient Overlay - Always visible for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
 
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-[#4a5d3f] bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 z-20" />
+                    {/* Hover Overlay - Only visible on hover (desktop only) */}
+                    <div className="absolute inset-0 bg-[#4a5d3f]/0 md:group-hover:bg-[#4a5d3f]/30 transition-all duration-500 pointer-events-none" />
 
-                    {/* Text Overlay - Always Visible */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-center z-30">
-                      <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-lg">
+                    {/* Text Content - Always visible at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-center pointer-events-none">
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-2xl">
                         {collection.name}
                       </h3>
-                      <p className="text-sm text-white/90 drop-shadow-md">
+                      <p className="text-base text-white/95 drop-shadow-lg font-medium">
                         {collection.items}
                       </p>
                     </div>
@@ -220,6 +213,7 @@ export default function HomePage() {
                   <h3 className="text-lg font-bold text-gray-900 mb-2">
                     {item.title}
                   </h3>
+
                   <p className="text-gray-600 text-sm">{item.desc}</p>
                 </div>
               ))}
