@@ -9,8 +9,8 @@ import { getCartCount } from "@/lib/cartUtils";
 const navLinks = [
   { href: "/collections/kaftans", label: "Kaftans" },
   { href: "/collections/caps", label: "Caps & Headwear" },
-  { href: "/collections/trousers", label: "Trousers" },
-  { href: "/collections/readymade", label: "Ready-Made Wears" },
+  { href: "/collections/agbada", label: "Agbada Set" },
+  { href: "/collections/fabrics", label: "Fabrics" },
 ];
 
 export function Header() {

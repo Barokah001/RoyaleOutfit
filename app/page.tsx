@@ -22,7 +22,7 @@ export default function HomePage() {
       name: "Luxury Kaftans",
       items: "6+ Styles",
       href: "/collections/kaftans",
-      imageUrl: "/images/kaftan-grid.png",
+      imageUrl: "/images/kaftan-grid.jpg",
     },
     {
       name: "Traditional Caps",
@@ -31,10 +31,10 @@ export default function HomePage() {
       imageUrl: "/images/cap-grid.jpeg",
     },
     {
-      name: "Premium Trousers",
+      name: "Premium Fabrics",
       items: "5+ Options",
-      href: "/collections/trousers",
-      imageUrl: "/images/cream-kaftan.png",
+      href: "/collections/fabrics",
+      imageUrl: "/images/forest-green-fabric.jpg",
     },
   ];
 
