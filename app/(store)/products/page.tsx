@@ -16,7 +16,7 @@ export default function ProductsPage() {
   const [priceRange, setPriceRange] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("default");
 
-  const categories = ["All", "Kaftans", "Caps", "Trousers", "Ready-Made Wears"];
+  const categories = ["All", "Kaftans", "Caps", "Agbada Set", "Fabrics"];
 
   // Filter by category
   let filteredProducts =

@@ -10,7 +10,7 @@ export function Footer() {
     { title: 'Shop', links: [
       { name: 'Kaftans', href: '/collections/kaftans' },
       { name: 'Caps', href: '/collections/caps' },
-      { name: 'Trousers', href: '/collections/trousers' },
+      { name: 'Agbada Set', href: '/collections/agbada' },
     ]},
     { title: 'Customer Care', links: [
       { name: 'Contact Us', href: '/contact' },

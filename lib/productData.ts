@@ -506,7 +506,7 @@ const agbadaSets: Product[] = [
     price: 150000,
     slug: "agbada-sky-blue-heritage",
     imageUrl: "/images/agbada-set-f.jpg",
-    images: ["/images/agbada-f.png", "/images/agbada-b.png", "/images/agbada-top.png"],
+    images: ["/images/agbada-set-f.png", "/images/agbada-b.png", "/images/agbada-top.png"],
     description: "A majestic three-piece Agbada ensemble in a serene sky blue. Features grand outer robe with geometric star embroidery, matching long-sleeve inner kaftan, and traditional multi-tonal striped Fila.",
     category: "Agbada Sets",
     availableSizes: ["M", "L", "XL", "XXL"],
