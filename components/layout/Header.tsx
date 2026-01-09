@@ -1,39 +1,65 @@
-// components/layout/Header.tsx - With Dynamic Cart Count
+// components/layout/Header.tsx - With Dropdown Menus
 "use client";
 
 import Link from "next/link";
-import { ShoppingCart, User, Menu, Search, X } from "lucide-react";
+import { ShoppingCart, User, Menu, Search, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { getCartCount } from "@/lib/cartUtils";
 
 const navLinks = [
-  { href: "/collections/kaftans", label: "Kaftans" },
-  { href: "/collections/caps", label: "Caps & Headwear" },
-  { href: "/collections/agbada", label: "Agbada Set" },
-  { href: "/collections/fabrics", label: "Fabrics" },
+  {
+    label: "Shop",
+    dropdown: [
+      { name: "All Products", href: "/products" },
+      { name: "Kaftans", href: "/collections/kaftans" },
+      { name: "Caps & Headwear", href: "/collections/caps" },
+      { name: "Agbada Sets", href: "/collections/agbada" },
+      { name: "Premium Fabrics", href: "/collections/fabrics" },
+    ],
+  },
+  {
+    label: "Customer Care",
+    dropdown: [
+      { name: "Contact Us", href: "/contact" },
+      { name: "FAQs", href: "/faq" },
+      { name: "Shipping & Returns", href: "/policy/shipping" },
+    ],
+  },
+  {
+    label: "Company",
+    dropdown: [
+      { name: "About Us", href: "/about" },
+      { name: "Careers", href: "/careers" },
+      { name: "Terms of Service", href: "/policy/terms" },
+    ],
+  },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  // Update cart count on mount and when cart changes
   useEffect(() => {
     const updateCartCount = () => {
       setCartCount(getCartCount());
     };
 
-    // Initial load
     updateCartCount();
-
-    // Listen for cart updates
     window.addEventListener("cartUpdated", updateCartCount);
 
-    // Cleanup
     return () => {
       window.removeEventListener("cartUpdated", updateCartCount);
     };
   }, []);
+
+  const handleMouseEnter = (label: string) => {
+    setActiveDropdown(label);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveDropdown(null);
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm">
@@ -45,19 +71,39 @@ export function Header() {
           ROYALE OUTFITS
         </Link>
 
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="relative text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 group py-2"
+            <div
+              key={link.label}
+              className="relative group"
+              onMouseEnter={() => handleMouseEnter(link.label)}
+              onMouseLeave={handleMouseLeave}
             >
-              {link.label}
-              <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-[#4a5d3f] transition-all duration-300 group-hover:w-full"></span>
-            </Link>
+              <button className="flex items-center gap-1 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 py-2">
+                {link.label}
+                <ChevronDown className="h-4 w-4" />
+              </button>
+
+              {/* Dropdown Menu */}
+              {activeDropdown === link.label && (
+                <div className="absolute top-full left-0 mt-0 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+                  {link.dropdown.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#f5f9f5] hover:text-[#4a5d3f] transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </nav>
 
+        {/* Right Side Icons */}
         <div className="flex items-center space-x-2 md:space-x-4">
           <button
             className="p-2 rounded-full hover:bg-gray-100 transition-colors hidden sm:block"
@@ -103,17 +149,26 @@ export function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden py-4 border-t border-gray-200 bg-white">
-          <nav className="flex flex-col space-y-3 px-4">
+        <div className="md:hidden py-4 border-t border-gray-200 bg-white max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <nav className="flex flex-col px-4">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-base font-medium text-gray-700 hover:text-gray-900 py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
+              <div key={link.label} className="border-b border-gray-100 last:border-0">
+                <div className="py-3">
+                  <div className="font-semibold text-gray-900 mb-2">{link.label}</div>
+                  <div className="space-y-1 pl-4">
+                    {link.dropdown.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block text-sm text-gray-700 hover:text-[#4a5d3f] py-2 transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
             ))}
           </nav>
         </div>

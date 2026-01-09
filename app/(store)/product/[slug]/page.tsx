@@ -1,4 +1,4 @@
-// app/product/[slug]/page.tsx - Fixed TypeScript Errors
+// app/product/[slug]/page.tsx - With Fabric Color Variants
 "use client";
 
 import Image from "next/image";
@@ -68,12 +68,23 @@ export default function ProductDetailPage({
   const [isAdded, setIsAdded] = useState<boolean>(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 
+  // For fabric color variants
+  const [selectedColorIndex, setSelectedColorIndex] = useState<number>(0);
+  const selectedColor = product.fabricColors?.[selectedColorIndex];
+
   const handleAddToCart = () => {
-    // Add to cart using the utility function
+    const cartProduct = {
+      ...product,
+      name:
+        product.isFabric && selectedColor
+          ? `${product.name} - ${selectedColor.name}`
+          : product.name,
+    };
+
     addToCart(
       {
         id: product.id,
-        name: product.name,
+        name: cartProduct.name,
         price: product.price,
         imageUrl: product.imageUrl,
         slug: product.slug,
@@ -82,20 +93,24 @@ export default function ProductDetailPage({
       quantity
     );
 
-    // Show success message
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
-
-    // Trigger a custom event to update cart count in header
     window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const handleBuyNow = () => {
-    // Add to cart first
+    const cartProduct = {
+      ...product,
+      name:
+        product.isFabric && selectedColor
+          ? `${product.name} - ${selectedColor.name}`
+          : product.name,
+    };
+
     addToCart(
       {
         id: product.id,
-        name: product.name,
+        name: cartProduct.name,
         price: product.price,
         imageUrl: product.imageUrl,
         slug: product.slug,
@@ -104,7 +119,6 @@ export default function ProductDetailPage({
       quantity
     );
 
-    // Navigate to checkout
     router.push("/checkout");
   };
 
@@ -127,7 +141,7 @@ export default function ProductDetailPage({
         >
           {/* Image Gallery Section */}
           <motion.div variants={imageVariants} className="lg:w-1/2">
-            {/* Main Image */}
+            {/* Main Image with Color Overlay for Fabrics */}
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl shadow-xl border-2 border-gray-200 mb-4">
               <Image
                 src={product.images[selectedImageIndex]}
@@ -138,6 +152,14 @@ export default function ProductDetailPage({
                 priority
                 unoptimized
               />
+
+              {/* Color overlay for fabrics */}
+              {product.isFabric && selectedColor && (
+                <div
+                  className="absolute inset-0 mix-blend-multiply opacity-60"
+                  style={{ backgroundColor: selectedColor.hexCode }}
+                />
+              )}
             </div>
 
             {/* Thumbnail Images */}
@@ -160,6 +182,12 @@ export default function ProductDetailPage({
                     sizes="150px"
                     unoptimized
                   />
+                  {product.isFabric && selectedColor && (
+                    <div
+                      className="absolute inset-0 mix-blend-multiply opacity-60"
+                      style={{ backgroundColor: selectedColor.hexCode }}
+                    />
+                  )}
                 </button>
               ))}
             </div>
@@ -172,14 +200,54 @@ export default function ProductDetailPage({
             </p>
             <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
               {product.name}
+              {product.isFabric && selectedColor && (
+                <span className="text-2xl text-[#4a5d3f] block mt-2">
+                  {selectedColor.name}
+                </span>
+              )}
             </h1>
             <p className="text-3xl md:text-4xl font-bold text-[#4a5d3f] mb-6">
               ₦{product.price.toLocaleString()}
             </p>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              {product.description}
+              {product.isFabric && selectedColor
+                ? selectedColor.description
+                : product.description}
             </p>
+
+            {/* Color Selection for Fabrics */}
+            {product.isFabric && product.fabricColors && (
+              <motion.div variants={itemVariants} className="mb-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  Select Color:
+                </h3>
+                <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                  {product.fabricColors.map((color, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedColorIndex(idx)}
+                      className={`relative group transition-all duration-300 ${
+                        selectedColorIndex === idx
+                          ? "ring-4 ring-[#4a5d3f] ring-offset-2"
+                          : "hover:ring-2 hover:ring-gray-400"
+                      }`}
+                      title={color.name}
+                    >
+                      <div className="aspect-square rounded-lg overflow-hidden shadow-md">
+                        <div
+                          className="w-full h-full"
+                          style={{ backgroundColor: color.hexCode }}
+                        />
+                      </div>
+                      <p className="text-xs text-center mt-1 font-medium text-gray-700 group-hover:text-[#4a5d3f] transition-colors">
+                        {color.name}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
 
             {/* Product Details */}
             {product.details && (
@@ -201,7 +269,7 @@ export default function ProductDetailPage({
             {/* Size Selection */}
             <motion.div variants={itemVariants} className="mb-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                Select Size:
+                Select {product.isFabric ? "Yardage" : "Size"}:
               </h3>
               <div className="flex flex-wrap gap-3">
                 {product.availableSizes.map((size: string) => (

@@ -1,5 +1,11 @@
 // lib/productData.ts - Reorganized and Clean
 
+export interface FabricColorVariant {
+  name: string;
+  hexCode: string;
+  description?: string;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -12,6 +18,8 @@ export interface Product {
   availableSizes: string[];
   isMonogrammed: boolean;
   details?: string[];
+  fabricColors?: FabricColorVariant[];
+  isFabric?: boolean;
 }
 
 // ====================================================================
@@ -644,227 +652,102 @@ const caps: Product[] = [
 // ====================================================================
 // FABRICS - Premium Materials (Sold by Yards)
 // ====================================================================
+// FABRICS - With Color Variants
 const fabrics: Product[] = [
   {
     id: "f1",
-    name: "Kando Italian Forest Green",
+    name: "Kando Italian Collection",
     price: 18000,
-    slug: "fabric-kando-forest-green",
+    slug: "fabric-kando-italian",
     imageUrl: "/images/forest-green-fabric.jpg",
-    images: ["/images/forest-green-fabric.jpg", "/images/forest-green-fabric.jpg", "/images/forest-green-fabric.jpg"],
-    description: "An exclusive Italian fabric from the Kando 'Collection for Gentleman'. This deep forest green offers a sophisticated, matte finish for luxury traditional wear.",
+    images: ["/images/forest-green-fabric.jpg"],
+    description: "Exclusive Italian fabric from the Kando 'Collection for Gentleman'. Premium quality with rich colors and sophisticated finish.",
     category: "Fabrics",
     availableSizes: ["4 Yards", "7 Yards"],
     isMonogrammed: false,
+    isFabric: true,
+    fabricColors: [
+      {
+        name: "Forest Green",
+        hexCode: "#2d4a2b",
+        description: "Deep forest green with sophisticated matte finish"
+      },
+      {
+        name: "Midnight Navy",
+        hexCode: "#1a1f3a",
+        description: "Dark professional midnight navy"
+      },
+      {
+        name: "Dark Cocoa",
+        hexCode: "#3d2817",
+        description: "Rich dark cocoa brown with subtle sheen"
+      },
+      {
+        name: "Steel Blue",
+        hexCode: "#4a5d6c",
+        description: "Unique steel blue with professional appeal"
+      },
+      {
+        name: "Camel Tan",
+        hexCode: "#c19a6b",
+        description: "Regal camel tan with luxury finish"
+      }
+    ],
     details: [
       "Authentic Italian textile craftsmanship",
-      "Rich Forest Green pigment",
-      "Part of the Kando Gentleman series",
-      "Ideal for structured Agbada or Kaftans"
+      "Part of the exclusive Kando Gentleman series",
+      "Ideal for structured Agbada or Kaftans",
+      "Premium drape and wrinkle resistance"
     ]
   },
   {
     id: "f2",
-    name: "Kando Italian Midnight Navy",
-    price: 18000,
-    slug: "fabric-kando-midnight-navy",
-    imageUrl: "/images/midnight-navy-fabric.jpg",
-    images: ["/images/midnight-navy-fabric.jpg", "/images/midnight-navy-fabric.jpg", "/images/midnight-navy-fabric.jpg"],
-    description: "A dark, professional midnight navy from the exclusive Kando Italian range.",
-    category: "Fabrics",
-    availableSizes: ["4 Yards", "7 Yards"],
-    isMonogrammed: false,
-    details: [
-      "Deep Midnight Navy hue",
-      "Exclusive Italian import quality",
-      "Smooth texture with a premium drape",
-      "Non-fading executive grade material"
-    ]
-  },
-  {
-    id: "f3",
-    name: "Verona Espresso Brown",
+    name: "Verona Collection",
     price: 15000,
-    slug: "fabric-verona-espresso",
+    slug: "fabric-verona-collection",
     imageUrl: "/images/espresso-brown-fabric.jpg",
-    images: [
-      "/images/espresso-brown-fabric.jpg",
-      "/images/espresso-brown-fabric.jpg",
-      "/images/espresso-brown-fabric.jpg",
-    ],
-    description:
-      "A 160cm wide non-fading fabric from the Verona collection. This espresso brown provides a warm, masculine tone for everyday elegance.",
+    images: ["/images/espresso-brown-fabric.jpg"],
+    description: "160cm wide non-fading fabric from the Verona collection. AMZ certified quality with durable construction.",
     category: "Fabrics",
     availableSizes: ["4 Yards", "7 Yards"],
     isMonogrammed: false,
-    details: [
-      "160cm non-fading textile technology",
-      "Rich Espresso Brown shade",
-      "Durable AMZ brand quality",
-      "Excellent for custom embroidery application",
+    isFabric: true,
+    fabricColors: [
+      {
+        name: "Espresso Brown",
+        hexCode: "#3e2723",
+        description: "Warm espresso brown for everyday elegance"
+      },
+      {
+        name: "Dove Grey",
+        hexCode: "#9e9e9e",
+        description: "Clean and modern dove grey"
+      },
+      {
+        name: "Pure White",
+        hexCode: "#ffffff",
+        description: "Crisp pure white, guaranteed non-yellowing"
+      },
+      {
+        name: "Sand Beige",
+        hexCode: "#d7ccc8",
+        description: "Warm earthy sand beige"
+      },
+      {
+        name: "Sky Blue",
+        hexCode: "#81d4fa",
+        description: "Bright serene sky blue for festive occasions"
+      }
     ],
-  },
-  {
-    id: "f4",
-    name: "Verona Dove Grey",
-    price: 15000,
-    slug: "fabric-verona-dove-grey",
-    imageUrl: "/images/dove-grey-fabric.jpg",
-    images: [
-      "/images/dove-grey-fabric.jpg",
-      "/images/dove-grey-fabric.jpg",
-      "/images/dove-grey-fabric.jpg",
-    ],
-    description:
-      "A clean and modern Dove Grey fabric from the Verona line. Perfect for minimalist designs and daytime ceremonies.",
-    category: "Fabrics",
-    availableSizes: ["4 Yards", "7 Yards"],
-    isMonogrammed: false,
     details: [
-      "Subtle Dove Grey matte finish",
-      "160cm wide for full Agbada cuts",
+      "160cm wide for versatile tailoring",
       "Non-fading AMZ certified material",
-      "Soft skin-feel for all-day comfort",
-    ],
-  },
-  {
-    id: "f5",
-    name: "Kando Italian Dark Cocoa",
-    price: 18000,
-    slug: "fabric-kando-dark-cocoa",
-    imageUrl: "https://example.com/f5.jpg",
-    images: [
-      "https://example.com/f5-texture.jpg",
-      "https://example.com/f5-roll.jpg",
-    ],
-    description:
-      "A high-end dark cocoa brown from the Italian Kando collection. This fabric is favored for its executive presence and subtle sheen.",
-    category: "Fabrics",
-    availableSizes: ["4 Yards", "7 Yards"],
-    isMonogrammed: false,
-    details: [
-      "Premium Italian import",
-      "Deep Dark Cocoa pigment",
-      "Part of the exclusive Gentleman series",
-      "Superior wrinkle resistance",
-    ],
-  },
-  {
-    id: "f6",
-    name: "Kando Italian Steel Blue",
-    price: 18000,
-    slug: "fabric-kando-steel-blue",
-    imageUrl: "/images/steel-blue-fabric.jpg",
-    images: [
-      "/images/steel-blue-fabric.jpg",
-      "/images/steel-blue-fabric.jpg",
-      "/images/steel-blue-fabric.jpg",
-    ],
-    description:
-      "A unique steel blue shade from the Kando collection, offering a cooler, professional alternative to standard navy.",
-    category: "Fabrics",
-    availableSizes: ["4 Yards", "7 Yards"],
-    isMonogrammed: false,
-    details: [
-      "Distinctive Steel Blue colorway",
-      "Exclusive Italian Gentleman range",
-      "Lustrous finish for evening wear",
-      "Premium drape and weight",
-    ],
-  },
-  {
-    id: "f7",
-    name: "Verona Pure White",
-    price: 15000,
-    slug: "fabric-verona-pure-white",
-    imageUrl: "/images/pure-white-fabric.jpg",
-    images: [
-      "/images/pure-white-fabric.jpg",
-      "/images/pure-white-fabric.jpg",
-      "/images/pure-white-fabric.jpg",
-    ],
-    description:
-      "The quintessential white fabric for traditional wear. This Verona 160cm material is guaranteed to stay crisp and bright.",
-    category: "Fabrics",
-    availableSizes: ["4 Yards", "7 Yards"],
-    isMonogrammed: false,
-    details: [
-      "Pure White high-definition color",
-      "Non-fading and resistant to yellowing",
-      "160cm width for versatile styling",
-      "The perfect base for colorful embroidery",
-    ],
-  },
-  {
-    id: "f8",
-    name: "Verona Sand Beige",
-    price: 15000,
-    slug: "fabric-verona-sand-beige",
-    imageUrl: "/images/sand-beige-fabric.jpg",
-    images: [
-      "/images/sand-beige-fabric.jpg",
-      "/images/sand-beige-fabric.jpg",
-      "/images/sand-beige-fabric.jpg",
-    ],
-    description:
-      "A warm, earthy sand beige from the Verona AMZ collection. A versatile choice for both casual and formal traditional attire.",
-    category: "Fabrics",
-    availableSizes: ["4 Yards", "7 Yards"],
-    isMonogrammed: false,
-    details: [
-      "Natural Sand Beige tone",
-      "Guaranteed non-fading quality",
-      "160cm wide professional cut",
-      "High durability for frequent wear",
-    ],
-  },
-  {
-    id: "f9",
-    name: "Kando Italian Camel Tan",
-    price: 18000,
-    slug: "fabric-kando-camel-tan",
-    imageUrl: "/images/camel-tan-fabric.jpg",
-    images: [
-      "/images/camel-tan-fabric.jpg",
-      "/images/camel-tan-fabric.jpg",
-      "/images/camel-tan-fabric.jpg",
-    ],
-    description:
-      "A regal camel tan fabric from Kando's Italian Gentleman collection. This color exudes luxury and pairs perfectly with gold accents.",
-    category: "Fabrics",
-    availableSizes: ["4 Yards", "7 Yards"],
-    isMonogrammed: false,
-    details: [
-      "Rich Camel Tan pigment",
-      "Italian Gentleman collection exclusive",
-      "Refined, smooth surface texture",
-      "Ideal for bespoke occasion wear",
-    ],
-  },
-  {
-    id: "f10",
-    name: "Verona Sky Blue",
-    price: 15000,
-    slug: "fabric-verona-sky-blue",
-    imageUrl: "/images/sky-blue-fabric.jpg",
-    images: [
-      "/images/camel-tan-fabric.jpg",
-      "/images/camel-tan-fabric.jpg",
-      "/images/camel-tan-fabric.jpg",
-    ],
-    description:
-      "A bright and serene sky blue from the Verona 160cm non-fading line. Excellent for festive celebrations and youthful designs.",
-    category: "Fabrics",
-    availableSizes: ["4 Yards", "7 Yards"],
-    isMonogrammed: false,
-    details: [
-      "Vibrant Sky Blue hue",
-      "AMZ certified non-fading material",
-      "Lightweight and breathable",
-      "160cm width for seamless tailoring",
-    ],
-  },
+      "Excellent for custom embroidery application",
+      "Soft skin-feel for all-day comfort"
+    ]
+  }
 ];
+
 
 export const allProducts: Product[] = [
   ...kaftans,

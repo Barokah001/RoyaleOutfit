@@ -1,9 +1,9 @@
-// app/page.tsx - Fixed Collections Display
+// app/page.tsx - With Brand Content Slider
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ShoppingBag,
   Sparkles,
@@ -12,9 +12,12 @@ import {
   Shield,
   Award,
   Heart,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { useState, useEffect } from "react";
 
 export default function HomePage() {
   const collections = [
@@ -37,6 +40,65 @@ export default function HomePage() {
       imageUrl: "/images/forest-green-fabric.jpg",
     },
   ];
+
+  // Brand Content Posts
+  const brandPosts = [
+    {
+      id: 1,
+      image: "/images/content-3.jpg",
+      title: "Aso-Oke Cap Sale",
+      description: "Premium caps starting from ₦7,000",
+    },
+    {
+      id: 2,
+      image: "/images/content-4.PNG",
+      title: "We're Hiring",
+      description: "Join our skilled team of tailors",
+    },
+    {
+      id: 3,
+      image: "/images/content-1.PNG",
+      title: "Happy New Year 2026",
+      description: "Celebrating a year of excellence",
+    },
+    {
+      id: 4,
+      image: "/images/content-2.PNG",
+      title: "Welcome to 2026",
+      description: "Thank you for choosing Royale Outfits",
+    },
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Auto-play slider
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % brandPosts.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, brandPosts.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % brandPosts.length);
+    setIsAutoPlaying(false);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + brandPosts.length) % brandPosts.length
+    );
+    setIsAutoPlaying(false);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+  };
 
   return (
     <>
@@ -125,6 +187,106 @@ export default function HomePage() {
           </div>
         </motion.div>
 
+        {/* Brand Content Slider Section */}
+        <section className="py-20 bg-gradient-to-b from-white to-[#faf9f6]">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Latest Updates
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Stay connected with our brand news and special announcements
+              </p>
+            </div>
+
+            <div className="relative max-w-5xl mx-auto">
+              {/* Slider Container */}
+              <div className="relative h-[500px] md:h-[600px] rounded-2xl overflow-hidden shadow-2xl bg-white">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0"
+                  >
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={brandPosts[currentSlide].image}
+                        alt={brandPosts[currentSlide].title}
+                        fill
+                        className="object-contain"
+                        priority
+                        unoptimized
+                      />
+
+                      {/* Overlay with text */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-8">
+                        <motion.div
+                          initial={{ y: 20, opacity: 0 }}
+                          animate={{ y: 0, opacity: 1 }}
+                          transition={{ delay: 0.3 }}
+                        >
+                          <h3 className="text-2xl md:text-4xl font-bold text-white mb-2">
+                            {brandPosts[currentSlide].title}
+                          </h3>
+                          <p className="text-lg text-white/90">
+                            {brandPosts[currentSlide].description}
+                          </p>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Navigation Buttons */}
+                <button
+                  onClick={prevSlide}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all hover:scale-110 z-10"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="h-6 w-6 text-[#4a5d3f]" />
+                </button>
+
+                <button
+                  onClick={nextSlide}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-lg flex items-center justify-center transition-all hover:scale-110 z-10"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="h-6 w-6 text-[#4a5d3f]" />
+                </button>
+              </div>
+
+              {/* Dot Indicators */}
+              <div className="flex justify-center gap-3 mt-6">
+                {brandPosts.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`transition-all duration-300 rounded-full ${
+                      currentSlide === index
+                        ? "w-12 h-3 bg-[#4a5d3f]"
+                        : "w-3 h-3 bg-gray-300 hover:bg-gray-400"
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Auto-play indicator */}
+              <div className="text-center mt-4">
+                <button
+                  onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                  className="text-sm text-gray-600 hover:text-[#4a5d3f] transition-colors"
+                >
+                  {isAutoPlaying ? "⏸ Pause" : "▶ Play"} Auto-slide
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Featured Collections Section */}
         <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
@@ -142,7 +304,6 @@ export default function HomePage() {
               {collections.map((collection, idx) => (
                 <Link key={idx} href={collection.href} className="group block">
                   <div className="relative w-full h-[500px] overflow-hidden rounded-xl shadow-md group-hover:shadow-2xl transition-all duration-300">
-                    {/* Background Image */}
                     <Image
                       src={collection.imageUrl}
                       alt={collection.name}
@@ -152,13 +313,9 @@ export default function HomePage() {
                       priority={idx === 0}
                     />
 
-                    {/* Gradient Overlay - Always visible for text readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
-
-                    {/* Hover Overlay - Only visible on hover (desktop only) */}
                     <div className="absolute inset-0 bg-[#4a5d3f]/0 md:group-hover:bg-[#4a5d3f]/30 transition-all duration-500 pointer-events-none" />
 
-                    {/* Text Content - Always visible at bottom */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-center pointer-events-none">
                       <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-2xl">
                         {collection.name}
@@ -213,7 +370,6 @@ export default function HomePage() {
                   <h3 className="text-lg font-bold text-gray-900 mb-2">
                     {item.title}
                   </h3>
-
                   <p className="text-gray-600 text-sm">{item.desc}</p>
                 </div>
               ))}
