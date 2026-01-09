@@ -1,6 +1,8 @@
 // app/about/page.tsx
 "use client";
 
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import { motion } from "framer-motion";
 import { Award, Heart, Users, Sparkles } from "lucide-react";
 import Image from "next/image";
@@ -41,6 +43,8 @@ export default function AboutPage() {
   ];
 
   return (
+    <>
+    <Header />
     <div className="min-h-screen bg-[#faf9f6]">
       {/* Hero Section */}
       <section className="relative h-[400px] md:h-[500px] overflow-hidden">
@@ -242,5 +246,8 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
+
+    <Footer />
+    </>
   );
 }

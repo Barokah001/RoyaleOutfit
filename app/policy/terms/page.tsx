@@ -1,6 +1,8 @@
 // app/policy/terms/page.tsx
 "use client";
 
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import { motion } from "framer-motion";
 import { Shield } from "lucide-react";
 
@@ -122,97 +124,102 @@ export default function TermsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] py-12">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
-          {/* Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#e8efe6] mb-4">
-              <Shield className="h-8 w-8 text-[#4a5d3f]" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
-              Terms of Service
-            </h1>
-            <p className="text-lg text-gray-600">
-              Last Updated: January 9, 2026
-            </p>
-          </div>
-
-          {/* Introduction */}
-          <div className="bg-white p-8 rounded-xl shadow-lg mb-8">
-            <p className="text-gray-700 leading-relaxed">
-              Welcome to Royale Outfits. These Terms of Service
-              (&quot;Terms&quot;) govern your access to and use of our website,
-              products, and services. Please read these terms carefully before
-              placing an order or using our services.
-            </p>
-          </div>
-
-          {/* Terms Sections */}
-          <div className="space-y-6">
-            {sections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                className="bg-white p-6 md:p-8 rounded-xl shadow-md"
-              >
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                  {section.title}
-                </h2>
-
-                {section.content && (
-                  <p className="text-gray-700 leading-relaxed">
-                    {section.content}
-                  </p>
-                )}
-
-                {section.subsections && (
-                  <div className="space-y-4">
-                    {section.subsections.map((subsection, subIndex) => (
-                      <div key={subIndex}>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          {subsection.subtitle}
-                        </h3>
-                        <p className="text-gray-700 leading-relaxed pl-4">
-                          {subsection.text}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Agreement Footer */}
+    <>
+      <Header />
+      <div className="min-h-screen bg-[#faf9f6] py-12">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="mt-12 bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f] p-8 rounded-xl text-white text-center"
+            className="max-w-4xl mx-auto"
           >
-            <p className="text-lg mb-4">
-              By using Royale Outfits services, you acknowledge that you have
-              read, understood, and agree to be bound by these Terms of Service.
-            </p>
-            <a
-              href="/contact"
-              className="inline-block bg-white text-[#4a5d3f] px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+            {/* Header */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#e8efe6] mb-4">
+                <Shield className="h-8 w-8 text-[#4a5d3f]" />
+              </div>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+                Terms of Service
+              </h1>
+              <p className="text-lg text-gray-600">
+                Last Updated: January 9, 2026
+              </p>
+            </div>
+
+            {/* Introduction */}
+            <div className="bg-white p-8 rounded-xl shadow-lg mb-8">
+              <p className="text-gray-700 leading-relaxed">
+                Welcome to Royale Outfits. These Terms of Service
+                (&quot;Terms&quot;) govern your access to and use of our
+                website, products, and services. Please read these terms
+                carefully before placing an order or using our services.
+              </p>
+            </div>
+
+            {/* Terms Sections */}
+            <div className="space-y-6">
+              {sections.map((section, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  className="bg-white p-6 md:p-8 rounded-xl shadow-md"
+                >
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                    {section.title}
+                  </h2>
+
+                  {section.content && (
+                    <p className="text-gray-700 leading-relaxed">
+                      {section.content}
+                    </p>
+                  )}
+
+                  {section.subsections && (
+                    <div className="space-y-4">
+                      {section.subsections.map((subsection, subIndex) => (
+                        <div key={subIndex}>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                            {subsection.subtitle}
+                          </h3>
+                          <p className="text-gray-700 leading-relaxed pl-4">
+                            {subsection.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Agreement Footer */}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mt-12 bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f] p-8 rounded-xl text-white text-center"
             >
-              Contact Us
-            </a>
+              <p className="text-lg mb-4">
+                By using Royale Outfits services, you acknowledge that you have
+                read, understood, and agree to be bound by these Terms of
+                Service.
+              </p>
+              <a
+                href="/contact"
+                className="inline-block bg-white text-[#4a5d3f] px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Contact Us
+              </a>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

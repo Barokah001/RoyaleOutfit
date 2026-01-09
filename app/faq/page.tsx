@@ -1,6 +1,8 @@
 // app/faq/page.tsx
 "use client";
 
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -132,98 +134,102 @@ export default function FAQPage() {
   let questionCounter = 0;
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] py-12">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Find answers to common questions about our products, orders, and
-            services
-          </p>
-        </motion.div>
-
-        <div className="max-w-4xl mx-auto space-y-12">
-          {faqs.map((category, catIndex) => (
-            <motion.div
-              key={catIndex}
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: catIndex * 0.1 }}
-            >
-              <h2 className="text-2xl font-bold text-[#4a5d3f] mb-6 pb-2 border-b-2 border-[#4a5d3f]">
-                {category.category}
-              </h2>
-              <div className="space-y-4">
-                {category.questions.map((faq) => {
-                  const currentIndex = questionCounter++;
-                  return (
-                    <div
-                      key={currentIndex}
-                      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-                    >
-                      <button
-                        onClick={() => toggleQuestion(currentIndex)}
-                        className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
-                      >
-                        <span className="text-lg font-semibold text-gray-900 pr-4">
-                          {faq.q}
-                        </span>
-                        <ChevronDown
-                          className={`flex-shrink-0 h-5 w-5 text-[#4a5d3f] transition-transform duration-300 ${
-                            openIndex === currentIndex ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      <motion.div
-                        initial={false}
-                        animate={{
-                          height: openIndex === currentIndex ? "auto" : 0,
-                        }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-6 text-gray-700 leading-relaxed">
-                          {faq.a}
-                        </div>
-                      </motion.div>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Contact CTA */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-16 text-center bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            Still Have Questions?
-          </h3>
-          <p className="text-gray-600 mb-6">
-            Our customer service team is here to help you
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-[#4a5d3f] text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
+    <>
+      <Header />
+      <div className="min-h-screen bg-[#faf9f6] py-12">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
           >
-            Contact Us
-          </a>
-        </motion.div>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Find answers to common questions about our products, orders, and
+              services
+            </p>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto space-y-12">
+            {faqs.map((category, catIndex) => (
+              <motion.div
+                key={catIndex}
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: catIndex * 0.1 }}
+              >
+                <h2 className="text-2xl font-bold text-[#4a5d3f] mb-6 pb-2 border-b-2 border-[#4a5d3f]">
+                  {category.category}
+                </h2>
+                <div className="space-y-4">
+                  {category.questions.map((faq) => {
+                    const currentIndex = questionCounter++;
+                    return (
+                      <div
+                        key={currentIndex}
+                        className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                      >
+                        <button
+                          onClick={() => toggleQuestion(currentIndex)}
+                          className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
+                        >
+                          <span className="text-lg font-semibold text-gray-900 pr-4">
+                            {faq.q}
+                          </span>
+                          <ChevronDown
+                            className={`flex-shrink-0 h-5 w-5 text-[#4a5d3f] transition-transform duration-300 ${
+                              openIndex === currentIndex ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                        <motion.div
+                          initial={false}
+                          animate={{
+                            height: openIndex === currentIndex ? "auto" : 0,
+                          }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-6 text-gray-700 leading-relaxed">
+                            {faq.a}
+                          </div>
+                        </motion.div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Contact CTA */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-16 text-center bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto"
+          >
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Still Have Questions?
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Our customer service team is here to help you
+            </p>
+            <a
+              href="/contact"
+              className="inline-block bg-[#4a5d3f] text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
+            >
+              Contact Us
+            </a>
+          </motion.div>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

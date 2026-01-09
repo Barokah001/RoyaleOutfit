@@ -1,6 +1,8 @@
 // app/careers/page.tsx
 "use client";
 
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import { motion } from "framer-motion";
 import {
   Briefcase,
@@ -139,231 +141,236 @@ export default function CareersPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#faf9f6]">
-      {/* Hero Section */}
-      <section className="relative h-[400px] overflow-hidden bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f]">
-        <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
-        <div className="relative container mx-auto px-4 h-full flex items-center justify-center text-center">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
-              Join Our Team
-            </h1>
-            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-              Build your career with Nigeria&apos;s premier traditional attire
-              brand
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why Work With Us */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Work at Royale Outfits?
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Join a team that values craftsmanship, creativity, and cultural
-              heritage
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-[#faf9f6] p-6 rounded-xl text-center hover:shadow-lg transition-shadow"
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#e8efe6] mb-4">
-                  <benefit.icon className="h-8 w-8 text-[#4a5d3f]" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{benefit.description}</p>
-              </motion.div>
-            ))}
+    <>
+      <Header />
+      <div className="min-h-screen bg-[#faf9f6]">
+        {/* Hero Section */}
+        <section className="relative h-[400px] overflow-hidden bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f]">
+          <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
+          <div className="relative container mx-auto px-4 h-full flex items-center justify-center text-center">
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
+                Join Our Team
+              </h1>
+              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+                Build your career with Nigeria&apos;s premier traditional attire
+                brand
+              </p>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Open Positions */}
-      <section className="py-20 bg-[#faf9f6]">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Open Positions
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Find your perfect role and apply today
-            </p>
-          </motion.div>
+        {/* Why Work With Us */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Why Work at Royale Outfits?
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Join a team that values craftsmanship, creativity, and cultural
+                heritage
+              </p>
+            </motion.div>
 
-          <div className="max-w-5xl mx-auto space-y-6">
-            {openPositions.map((job, index) => (
-              <motion.div
-                key={index}
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-              >
-                <div
-                  className="p-6 cursor-pointer"
-                  onClick={() =>
-                    setSelectedJob(selectedJob === index ? null : index)
-                  }
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-[#faf9f6] p-6 rounded-xl text-center hover:shadow-lg transition-shadow"
                 >
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                        {job.title}
-                      </h3>
-                      <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                        <span className="flex items-center gap-1">
-                          <Briefcase className="h-4 w-4" />
-                          {job.department}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <MapPin className="h-4 w-4" />
-                          {job.location}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="h-4 w-4" />
-                          {job.type}
-                        </span>
-                        <span className="flex items-center gap-1 font-medium text-[#4a5d3f]">
-                          <DollarSign className="h-4 w-4" />
-                          {job.salary}
-                        </span>
-                      </div>
-                    </div>
-                    <button className="px-6 py-3 bg-[#4a5d3f] text-white rounded-full font-semibold hover:opacity-90 transition-opacity whitespace-nowrap">
-                      View Details
-                    </button>
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#e8efe6] mb-4">
+                    <benefit.icon className="h-8 w-8 text-[#4a5d3f]" />
                   </div>
-                </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm">{benefit.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                {selectedJob === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="border-t border-gray-200 p-6 bg-[#faf9f6]"
+        {/* Open Positions */}
+        <section className="py-20 bg-[#faf9f6]">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Open Positions
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Find your perfect role and apply today
+              </p>
+            </motion.div>
+
+            <div className="max-w-5xl mx-auto space-y-6">
+              {openPositions.map((job, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                >
+                  <div
+                    className="p-6 cursor-pointer"
+                    onClick={() =>
+                      setSelectedJob(selectedJob === index ? null : index)
+                    }
                   >
-                    <p className="text-gray-700 mb-6">{job.description}</p>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="text-lg font-bold text-gray-900 mb-3">
-                          Requirements
-                        </h4>
-                        <ul className="space-y-2">
-                          {job.requirements.map((req, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-start text-gray-700"
-                            >
-                              <span className="text-[#4a5d3f] mr-2 mt-1">
-                                •
-                              </span>
-                              <span className="text-sm">{req}</span>
-                            </li>
-                          ))}
-                        </ul>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                          {job.title}
+                        </h3>
+                        <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                          <span className="flex items-center gap-1">
+                            <Briefcase className="h-4 w-4" />
+                            {job.department}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <MapPin className="h-4 w-4" />
+                            {job.location}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="h-4 w-4" />
+                            {job.type}
+                          </span>
+                          <span className="flex items-center gap-1 font-medium text-[#4a5d3f]">
+                            <DollarSign className="h-4 w-4" />
+                            {job.salary}
+                          </span>
+                        </div>
                       </div>
-
-                      <div>
-                        <h4 className="text-lg font-bold text-gray-900 mb-3">
-                          Responsibilities
-                        </h4>
-                        <ul className="space-y-2">
-                          {job.responsibilities.map((resp, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-start text-gray-700"
-                            >
-                              <span className="text-[#4a5d3f] mr-2 mt-1">
-                                •
-                              </span>
-                              <span className="text-sm">{resp}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 flex gap-4">
-                      <a
-                        href="mailto:mubarakadegbenga@gmail.com?subject=Application for Master Tailor Position"
-                        className="px-6 py-3 bg-[#4a5d3f] text-white rounded-full font-semibold hover:opacity-90 transition-opacity"
-                      >
-                        Apply Now
-                      </a>
-                      <button
-                        onClick={() => setSelectedJob(null)}
-                        className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-full font-semibold hover:border-[#4a5d3f] transition-colors"
-                      >
-                        Close
+                      <button className="px-6 py-3 bg-[#4a5d3f] text-white rounded-full font-semibold hover:opacity-90 transition-opacity whitespace-nowrap">
+                        View Details
                       </button>
                     </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                  </div>
 
-      {/* Contact for Other Opportunities */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f] p-12 rounded-2xl text-white"
-          >
-            <h3 className="text-3xl font-bold mb-4">
-              Don&apos;t See Your Role?
-            </h3>
-            <p className="text-lg mb-6 text-white/90">
-              We&apos;re always looking for talented individuals. Send us your
-              CV and let&apos;s talk!
-            </p>
-            <a
-              href="mailto:mubarakadegbenga@gmail.com?subject=General Job Inquiry"
-              className="inline-block bg-white text-[#4a5d3f] px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                  {selectedJob === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="border-t border-gray-200 p-6 bg-[#faf9f6]"
+                    >
+                      <p className="text-gray-700 mb-6">{job.description}</p>
+
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="text-lg font-bold text-gray-900 mb-3">
+                            Requirements
+                          </h4>
+                          <ul className="space-y-2">
+                            {job.requirements.map((req, idx) => (
+                              <li
+                                key={idx}
+                                className="flex items-start text-gray-700"
+                              >
+                                <span className="text-[#4a5d3f] mr-2 mt-1">
+                                  •
+                                </span>
+                                <span className="text-sm">{req}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="text-lg font-bold text-gray-900 mb-3">
+                            Responsibilities
+                          </h4>
+                          <ul className="space-y-2">
+                            {job.responsibilities.map((resp, idx) => (
+                              <li
+                                key={idx}
+                                className="flex items-start text-gray-700"
+                              >
+                                <span className="text-[#4a5d3f] mr-2 mt-1">
+                                  •
+                                </span>
+                                <span className="text-sm">{resp}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div className="mt-6 flex gap-4">
+                        <a
+                          href="mailto:mubarakadegbenga@gmail.com?subject=Application for Master Tailor Position"
+                          className="px-6 py-3 bg-[#4a5d3f] text-white rounded-full font-semibold hover:opacity-90 transition-opacity"
+                        >
+                          Apply Now
+                        </a>
+                        <button
+                          onClick={() => setSelectedJob(null)}
+                          className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-full font-semibold hover:border-[#4a5d3f] transition-colors"
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact for Other Opportunities */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="max-w-3xl mx-auto text-center bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f] p-12 rounded-2xl text-white"
             >
-              Get in Touch
-            </a>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+              <h3 className="text-3xl font-bold mb-4">
+                Don&apos;t See Your Role?
+              </h3>
+              <p className="text-lg mb-6 text-white/90">
+                We&apos;re always looking for talented individuals. Send us your
+                CV and let&apos;s talk!
+              </p>
+              <a
+                href="mailto:mubarakadegbenga@gmail.com?subject=General Job Inquiry"
+                className="inline-block bg-white text-[#4a5d3f] px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                Get in Touch
+              </a>
+            </motion.div>
+          </div>
+        </section>
+      </div>
+
+    <Footer />
+    </>
   );
 }
