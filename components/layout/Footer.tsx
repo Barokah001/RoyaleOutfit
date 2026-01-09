@@ -43,7 +43,7 @@ export function Footer() {
     {
       name: "Instagram",
       icon: Instagram,
-      href: "https://instagram.com/royaleoutfits", // Replace with actual Instagram handle
+      href: "https://instagram.com/the_royale_outfits", // Replace with actual Instagram handle
       color: "hover:text-[#e4405f]",
     },
     {
