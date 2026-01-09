@@ -154,12 +154,12 @@ export default function ProductDetailPage({
               />
 
               {/* Color overlay for fabrics */}
-              {product.isFabric && selectedColor && (
+              {/* {product.isFabric && selectedColor && (
                 <div
                   className="absolute inset-0 mix-blend-multiply opacity-60"
                   style={{ backgroundColor: selectedColor.hexCode }}
                 />
-              )}
+              )} */}
             </div>
 
             {/* Thumbnail Images */}
@@ -171,7 +171,7 @@ export default function ProductDetailPage({
                   className={`relative aspect-square overflow-hidden rounded-lg border-2 transition-all duration-300 ${
                     selectedImageIndex === index
                       ? "border-[#4a5d3f] shadow-md scale-105"
-                      : "border-gray-200 hover:border-[#4a5d3f] hover:scale-105"
+                      : "border-gray-200 hover:border-[#4a5d3f10] hover:scale-105"
                   }`}
                 >
                   <Image

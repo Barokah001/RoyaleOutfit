@@ -275,14 +275,14 @@ export default function HomePage() {
               </div>
 
               {/* Auto-play indicator */}
-              <div className="text-center mt-4">
+              {/* <div className="text-center mt-4">
                 <button
                   onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                   className="text-sm text-gray-600 hover:text-[#4a5d3f] transition-colors"
                 >
                   {isAutoPlaying ? "⏸ Pause" : "▶ Play"} Auto-slide
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>

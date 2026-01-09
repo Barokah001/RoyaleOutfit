@@ -4,6 +4,7 @@ export interface FabricColorVariant {
   name: string;
   hexCode: string;
   description?: string;
+  imageUrl?: string;
 }
 
 export interface Product {
@@ -237,8 +238,8 @@ const kaftans: Product[] = [
     name: "Burgundy Geometric Pattern Kaftan",
     price: 85000,
     slug: "kaftan-burgundy-geometric",
-    imageUrl: "/images/dark-burgundy-f.jpg",
-    images: ["/images/dark-burgundy-f.jpg", "/images/dark-burgundy-s.png", "/images/dark-burgundy-b.png"],
+    imageUrl: "/images/dark-burgundy-f.png",
+    images: ["/images/dark-burgundy-f.png", "/images/dark-burgundy-s.png", "/images/dark-burgundy-b.png"],
     description: "A rich burgundy kaftan featuring intricate geometric embroidery along the placket and chest pocket.",
     category: "Kaftans",
     availableSizes: ["S", "M", "L", "XL"],
@@ -327,8 +328,8 @@ const kaftans: Product[] = [
     name: "Off-White Button-Down Kaftan",
     price: 70000,
     slug: "kaftan-off-white-button",
-    imageUrl: "/images/white-button-f.jpg",
-    images: ["/images/white-button-f.jpg", "/images/white-button-s.png", "/images/white-button-b.png"],
+    imageUrl: "/images/white-button.jpg",
+    images: ["/images/white-button.jpg", "/images/white-button-s.png", "/images/white-button-b.png"],
     description: "Classic off-white kaftan with visible gold-toned buttons and a crisp collar design.",
     category: "Kaftans",
     availableSizes: ["S", "M", "L", "XL"],
@@ -661,7 +662,8 @@ const fabrics: Product[] = [
     slug: "fabric-kando-italian",
     imageUrl: "/images/forest-green-fabric.jpg",
     images: ["/images/forest-green-fabric.jpg"],
-    description: "Exclusive Italian fabric from the Kando 'Collection for Gentleman'. Premium quality with rich colors and sophisticated finish.",
+    description:
+      "Exclusive Italian fabric from the Kando 'Collection for Gentleman'. Premium quality with rich colors and sophisticated finish.",
     category: "Fabrics",
     availableSizes: ["4 Yards", "7 Yards"],
     isMonogrammed: false,
@@ -670,35 +672,40 @@ const fabrics: Product[] = [
       {
         name: "Forest Green",
         hexCode: "#2d4a2b",
-        description: "Deep forest green with sophisticated matte finish"
+        description: "Deep forest green with sophisticated matte finish",
+        imageUrl: "/images/forest-green-fabric.jpg",
       },
       {
         name: "Midnight Navy",
         hexCode: "#1a1f3a",
-        description: "Dark professional midnight navy"
+        description: "Dark professional midnight navy",
+        imageUrl: "/images/midnight-navy-fabric.jpg",
       },
       {
         name: "Dark Cocoa",
         hexCode: "#3d2817",
-        description: "Rich dark cocoa brown with subtle sheen"
+        description: "Rich dark cocoa brown with subtle sheen",
+        imageUrl: "/images/dark-cocoa-fabric.jpg",
       },
       {
         name: "Steel Blue",
         hexCode: "#4a5d6c",
-        description: "Unique steel blue with professional appeal"
+        description: "Unique steel blue with professional appeal",
+        imageUrl: "/images/steel-blue-fabric.jpg",
       },
       {
         name: "Camel Tan",
         hexCode: "#c19a6b",
-        description: "Regal camel tan with luxury finish"
-      }
+        description: "Regal camel tan with luxury finish",
+        imageUrl: "/images/camel-tan-fabric.jpg",
+      },
     ],
     details: [
       "Authentic Italian textile craftsmanship",
       "Part of the exclusive Kando Gentleman series",
       "Ideal for structured Agbada or Kaftans",
-      "Premium drape and wrinkle resistance"
-    ]
+      "Premium drape and wrinkle resistance",
+    ],
   },
   {
     id: "f2",
@@ -707,7 +714,8 @@ const fabrics: Product[] = [
     slug: "fabric-verona-collection",
     imageUrl: "/images/espresso-brown-fabric.jpg",
     images: ["/images/espresso-brown-fabric.jpg"],
-    description: "160cm wide non-fading fabric from the Verona collection. AMZ certified quality with durable construction.",
+    description:
+      "160cm wide non-fading fabric from the Verona collection. AMZ certified quality with durable construction.",
     category: "Fabrics",
     availableSizes: ["4 Yards", "7 Yards"],
     isMonogrammed: false,
@@ -716,36 +724,41 @@ const fabrics: Product[] = [
       {
         name: "Espresso Brown",
         hexCode: "#3e2723",
-        description: "Warm espresso brown for everyday elegance"
+        description: "Warm espresso brown for everyday elegance",
+        imageUrl: "/images/espresso-brown-fabric.jpg",
       },
       {
         name: "Dove Grey",
         hexCode: "#9e9e9e",
-        description: "Clean and modern dove grey"
+        description: "Clean and modern dove grey",
+        imageUrl: "/images/dove-grey-fabric.jpg",
       },
       {
         name: "Pure White",
         hexCode: "#ffffff",
-        description: "Crisp pure white, guaranteed non-yellowing"
+        description: "Crisp pure white, guaranteed non-yellowing",
+        imageUrl: "/images/pure-white-fabric.jpg"
       },
       {
         name: "Sand Beige",
         hexCode: "#d7ccc8",
-        description: "Warm earthy sand beige"
+        description: "Warm earthy sand beige",
+        imageUrl: "/images/sand-beige-fabric.jpg",
       },
       {
         name: "Sky Blue",
         hexCode: "#81d4fa",
-        description: "Bright serene sky blue for festive occasions"
-      }
+        description: "Bright serene sky blue for festive occasions",
+        imageUrl: "/images/sky-blue-fabric.jpg",
+      },
     ],
     details: [
       "160cm wide for versatile tailoring",
       "Non-fading AMZ certified material",
       "Excellent for custom embroidery application",
-      "Soft skin-feel for all-day comfort"
-    ]
-  }
+      "Soft skin-feel for all-day comfort",
+    ],
+  },
 ];
 
 
