@@ -119,22 +119,6 @@ export function Footer() {
             <p className="text-white/60 text-sm">
               © {new Date().getFullYear()} ROYALE OUTFITS. All rights reserved.
             </p>
-
-            {/* Additional Links */}
-            <div className="flex gap-6 text-sm">
-              <Link
-                href="/policy/terms"
-                className="text-white/60 hover:text-white transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/policy/terms"
-                className="text-white/60 hover:text-white transition-colors"
-              >
-                Terms & Conditions
-              </Link>
-            </div>
           </div>
 
         </div>
