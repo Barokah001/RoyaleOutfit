@@ -1,4 +1,4 @@
-// app/product/[slug]/page.tsx - With Fabric Color Variants
+// app/product/[slug]/page.tsx - With Real Fabric Color Images
 "use client";
 
 import Image from "next/image";
@@ -10,7 +10,7 @@ import {
   Plus,
   ChevronLeft,
 } from "lucide-react";
-import { useState, use } from "react";
+import { useState, use, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { getProductBySlug } from "@/lib/productData";
@@ -67,18 +67,33 @@ export default function ProductDetailPage({
   const [quantity, setQuantity] = useState<number>(1);
   const [isAdded, setIsAdded] = useState<boolean>(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
-
+  
   // For fabric color variants
   const [selectedColorIndex, setSelectedColorIndex] = useState<number>(0);
   const selectedColor = product.fabricColors?.[selectedColorIndex];
 
+  // Update main image when color changes for fabrics
+  useEffect(() => {
+    if (product.isFabric && selectedColor?.imageUrl) {
+      // Reset to first image when color changes
+      setSelectedImageIndex(0);
+    }
+  }, [selectedColorIndex, product.isFabric, selectedColor]);
+
+  // Get the current image to display
+  const getCurrentImage = () => {
+    if (product.isFabric && selectedColor?.imageUrl) {
+      return selectedColor.imageUrl;
+    }
+    return product.images[selectedImageIndex] || product.imageUrl;
+  };
+
   const handleAddToCart = () => {
     const cartProduct = {
       ...product,
-      name:
-        product.isFabric && selectedColor
-          ? `${product.name} - ${selectedColor.name}`
-          : product.name,
+      name: product.isFabric && selectedColor 
+        ? `${product.name} - ${selectedColor.name}` 
+        : product.name,
     };
 
     addToCart(
@@ -86,7 +101,7 @@ export default function ProductDetailPage({
         id: product.id,
         name: cartProduct.name,
         price: product.price,
-        imageUrl: product.imageUrl,
+        imageUrl: selectedColor?.imageUrl || product.imageUrl,
         slug: product.slug,
       },
       selectedSize,
@@ -101,10 +116,9 @@ export default function ProductDetailPage({
   const handleBuyNow = () => {
     const cartProduct = {
       ...product,
-      name:
-        product.isFabric && selectedColor
-          ? `${product.name} - ${selectedColor.name}`
-          : product.name,
+      name: product.isFabric && selectedColor 
+        ? `${product.name} - ${selectedColor.name}` 
+        : product.name,
     };
 
     addToCart(
@@ -112,7 +126,7 @@ export default function ProductDetailPage({
         id: product.id,
         name: cartProduct.name,
         price: product.price,
-        imageUrl: product.imageUrl,
+        imageUrl: selectedColor?.imageUrl || product.imageUrl,
         slug: product.slug,
       },
       selectedSize,
@@ -141,56 +155,78 @@ export default function ProductDetailPage({
         >
           {/* Image Gallery Section */}
           <motion.div variants={imageVariants} className="lg:w-1/2">
-            {/* Main Image with Color Overlay for Fabrics */}
+            {/* Main Image */}
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl shadow-xl border-2 border-gray-200 mb-4">
               <Image
-                src={product.images[selectedImageIndex]}
-                alt={product.name}
+                key={getCurrentImage()} // Force re-render on image change
+                src={getCurrentImage()}
+                alt={`${product.name}${selectedColor ? ` - ${selectedColor.name}` : ''}`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
                 unoptimized
               />
-
-              {/* Color overlay for fabrics */}
-              {/* {product.isFabric && selectedColor && (
-                <div
-                  className="absolute inset-0 mix-blend-multiply opacity-60"
-                  style={{ backgroundColor: selectedColor.hexCode }}
-                />
-              )} */}
             </div>
 
-            {/* Thumbnail Images */}
-            <div className="grid grid-cols-3 gap-3">
-              {product.images.map((image: string, index: number) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImageIndex(index)}
-                  className={`relative aspect-square overflow-hidden rounded-lg border-2 transition-all duration-300 ${
-                    selectedImageIndex === index
-                      ? "border-[#4a5d3f] shadow-md scale-105"
-                      : "border-gray-200 hover:border-[#4a5d3f10] hover:scale-105"
-                  }`}
-                >
-                  <Image
-                    src={image}
-                    alt={`${product.name} view ${index + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="150px"
-                    unoptimized
-                  />
-                  {product.isFabric && selectedColor && (
-                    <div
-                      className="absolute inset-0 mix-blend-multiply opacity-60"
-                      style={{ backgroundColor: selectedColor.hexCode }}
+            {/* Thumbnail Images - Only show for non-fabric items */}
+            {!product.isFabric && product.images.length > 1 && (
+              <div className="grid grid-cols-3 gap-3">
+                {product.images.map((image: string, index: number) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className={`relative aspect-square overflow-hidden rounded-lg border-2 transition-all duration-300 ${
+                      selectedImageIndex === index
+                        ? "border-[#4a5d3f] shadow-md scale-105"
+                        : "border-gray-200 hover:border-[#4a5d3f] hover:scale-105"
+                    }`}
+                  >
+                    <Image
+                      src={image}
+                      alt={`${product.name} view ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="150px"
+                      unoptimized
                     />
-                  )}
-                </button>
-              ))}
-            </div>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Color Thumbnails for Fabrics */}
+            {product.isFabric && product.fabricColors && product.fabricColors.length > 1 && (
+              <div className="grid grid-cols-3 gap-3">
+                {product.fabricColors.map((color, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedColorIndex(idx)}
+                    className={`relative aspect-square overflow-hidden rounded-lg border-2 transition-all duration-300 ${
+                      selectedColorIndex === idx
+                        ? "border-[#4a5d3f] shadow-md scale-105"
+                        : "border-gray-200 hover:border-[#4a5d3f] hover:scale-105"
+                    }`}
+                  >
+                    {color.imageUrl ? (
+                      <Image
+                        src={color.imageUrl}
+                        alt={color.name}
+                        fill
+                        className="object-cover"
+                        sizes="150px"
+                        unoptimized
+                      />
+                    ) : (
+                      <div 
+                        className="w-full h-full"
+                        style={{ backgroundColor: color.hexCode }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
           </motion.div>
 
           {/* Product Info Section */}
@@ -211,7 +247,7 @@ export default function ProductDetailPage({
             </p>
 
             <p className="text-gray-700 leading-relaxed mb-6">
-              {product.isFabric && selectedColor
+              {product.isFabric && selectedColor?.description
                 ? selectedColor.description
                 : product.description}
             </p>
@@ -220,7 +256,7 @@ export default function ProductDetailPage({
             {product.isFabric && product.fabricColors && (
               <motion.div variants={itemVariants} className="mb-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  Select Color:
+                  Select Color: ({product.fabricColors.length} options available)
                 </h3>
                 <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
                   {product.fabricColors.map((color, idx) => (
@@ -235,14 +271,30 @@ export default function ProductDetailPage({
                       title={color.name}
                     >
                       <div className="aspect-square rounded-lg overflow-hidden shadow-md">
-                        <div
-                          className="w-full h-full"
-                          style={{ backgroundColor: color.hexCode }}
-                        />
+                        {color.imageUrl ? (
+                          <Image
+                            src={color.imageUrl}
+                            alt={color.name}
+                            width={100}
+                            height={100}
+                            className="w-full h-full object-cover"
+                            unoptimized
+                          />
+                        ) : (
+                          <div 
+                            className="w-full h-full"
+                            style={{ backgroundColor: color.hexCode }}
+                          />
+                        )}
                       </div>
                       <p className="text-xs text-center mt-1 font-medium text-gray-700 group-hover:text-[#4a5d3f] transition-colors">
                         {color.name}
                       </p>
+                      {selectedColorIndex === idx && (
+                        <div className="absolute -top-1 -right-1 w-6 h-6 bg-[#4a5d3f] rounded-full flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-white" />
+                        </div>
+                      )}
                     </button>
                   ))}
                 </div>
