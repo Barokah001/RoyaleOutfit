@@ -36,7 +36,7 @@ export default function AboutPage() {
   const stats = [
     { value: "500+", label: "Happy Customers" },
     { value: "1000+", label: "Custom Pieces Made" },
-    { value: "5+", label: "Years of Excellence" },
+    { value: "7+", label: "Years of Excellence" },
     { value: "100%", label: "Satisfaction Rate" },
   ];
 
