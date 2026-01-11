@@ -1,4 +1,4 @@
-// app/collections/[slug]/page.tsx - SIMPLIFIED VERSION
+// app/collections/[slug]/page.tsx - Brown Theme
 "use client";
 
 import { ProductCard } from "@/components/store/ProductCard";
@@ -20,38 +20,38 @@ export default function CollectionDetailPage({
 
   return (
     <div className="container mx-auto py-12 px-4 min-h-screen">
-      <header className="mb-10 p-6 bg-white rounded-xl shadow-lg border-t-4 border-[#4a5d3f]">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-[#4a5d3f] mb-2">
+      <header className="mb-10 p-6 bg-white rounded-xl shadow-brown-lg border-t-4 border-primary">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-2 font-display">
           {collectionName}
         </h1>
-        <p className="text-lg md:text-xl text-gray-600">
+        <p className="text-lg md:text-xl text-brand-brown-600">
           Discover {products.length} exclusive items in this collection
         </p>
       </header>
 
       <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
-        <div className="text-sm font-medium text-gray-700">
+        <div className="text-sm font-medium text-brand-brown-700">
           Showing 1 - {products.length} of {products.length} products
         </div>
 
         <div className="flex items-center space-x-4 flex-wrap gap-2">
-          <button className="flex items-center space-x-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:border-[#4a5d3f] transition-colors">
+          <button className="flex items-center space-x-2 rounded-lg border border-brand-brown-300 bg-white px-4 py-2 text-sm text-brand-brown-700 hover:border-primary transition-colors">
             <Filter className="h-4 w-4" />
             <span>Filter</span>
           </button>
 
-          <select className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 focus:border-[#4a5d3f] focus:ring-[#4a5d3f] focus:outline-none transition">
+          <select className="rounded-lg border border-brand-brown-300 bg-white px-4 py-2 text-sm text-brand-brown-700 focus:border-primary focus:ring-primary focus:outline-none transition">
             <option>Sort by Price: Low to High</option>
             <option>Sort by Price: High to Low</option>
             <option>Sort by Newest</option>
             <option>Sort by Name</option>
           </select>
 
-          <div className="hidden sm:flex border border-gray-300 rounded-lg p-1">
-            <button className="p-1 bg-[#4a5d3f] text-white rounded-md">
+          <div className="hidden sm:flex border border-brand-brown-300 rounded-lg p-1 bg-white">
+            <button className="p-1 bg-primary text-white rounded-md">
               <Grid className="h-5 w-5" />
             </button>
-            <button className="p-1 text-gray-500 hover:bg-gray-100 rounded-md">
+            <button className="p-1 text-brand-brown-500 hover:bg-brand-cream-100 rounded-md">
               <List className="h-5 w-5" />
             </button>
           </div>
@@ -65,11 +65,11 @@ export default function CollectionDetailPage({
       </div>
 
       {products.length === 0 && (
-        <div className="text-center py-20 bg-white rounded-xl shadow-lg mt-10">
-          <h2 className="text-2xl font-bold text-gray-700">
+        <div className="text-center py-20 bg-white rounded-xl shadow-brown-lg mt-10">
+          <h2 className="text-2xl font-bold text-brand-brown-700">
             No Products Found
           </h2>
-          <p className="text-gray-500 mt-2">
+          <p className="text-brand-brown-500 mt-2">
             Check back soon or explore our other collections.
           </p>
         </div>
