@@ -87,7 +87,7 @@ export default function AboutPage() {
                   Our founder, inspired by the rich history of Nigerian
                   craftsmanship, envisioned creating a brand that would bring
                   together the finest fabrics, skilled artisans, and modern
-                  design sensibilities. Today, we`&apos;re proud to serve
+                  design sensibilities. Today, we&apos;re proud to serve
                   customers across Nigeria and beyond, delivering pieces that
                   tell stories and create memories.
                 </p>

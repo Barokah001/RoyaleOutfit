@@ -3,7 +3,7 @@
 
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState, type FormEvent, type ChangeEvent} from "react";
+import { useState} from "react";
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
@@ -79,7 +79,7 @@ export default function ContactUsPage() {
             {submitStatus === "success" && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <p className="text-green-800 font-medium">
-                  ✓ Message sent successfully! We'll get back to you soon.
+                  ✓ Message sent successfully! We&apos;ll get back to you soon.
                 </p>
               </div>
             )}

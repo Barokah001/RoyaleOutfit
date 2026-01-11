@@ -1,8 +1,5 @@
 // app/careers/page.tsx
 "use client";
-
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
 import { motion } from "framer-motion";
 import {
   Briefcase,
