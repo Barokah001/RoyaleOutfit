@@ -3,7 +3,7 @@
 
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, type FormEvent, type ChangeEvent} from "react";
 
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
