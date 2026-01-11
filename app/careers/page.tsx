@@ -11,7 +11,7 @@ import {
   Users,
   MapPin,
   Clock,
-  DollarSign,
+  HandCoins,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -20,7 +20,7 @@ export default function CareersPage() {
 
   const benefits = [
     {
-      icon: DollarSign,
+      icon: HandCoins,
       title: "Competitive Salary",
       description: "Industry-leading compensation packages",
     },
@@ -142,11 +142,10 @@ export default function CareersPage() {
 
   return (
     <>
-      <Header />
-      <div className="min-h-screen bg-[#faf9f6]">
+      <div className="min-h-screen bg-brand-cream-200">
         {/* Hero Section */}
-        <section className="relative h-[400px] overflow-hidden bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f]">
-          <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
+        <section className="relative h-[400px] overflow-hidden bg-gradient-to-br from-primary to-brand-brown-700">
+          <div className="absolute inset-0 bg-[url('/images/kaftan-grid.jpg')] opacity-30"></div>
           <div className="relative container mx-auto px-4 h-full flex items-center justify-center text-center">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
@@ -174,10 +173,10 @@ export default function CareersPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-brand-brown-800 mb-4">
                 Why Work at Royale Outfits?
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-brand-brown-600 max-w-2xl mx-auto">
                 Join a team that values craftsmanship, creativity, and cultural
                 heritage
               </p>
@@ -191,15 +190,15 @@ export default function CareersPage() {
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-[#faf9f6] p-6 rounded-xl text-center hover:shadow-lg transition-shadow"
+                  className="bg-white p-6 rounded-xl text-center hover:shadow-brown-lg transition-shadow"
                 >
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#e8efe6] mb-4">
-                    <benefit.icon className="h-8 w-8 text-[#4a5d3f]" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-cream-100 mb-4">
+                    <benefit.icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-xl font-bold text-brand-brown-800 mb-2">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-600 text-sm">{benefit.description}</p>
+                  <p className="text-brand-brown-600 text-sm">{benefit.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -216,10 +215,10 @@ export default function CareersPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-brand-brown-800 mb-4">
                 Open Positions
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-brand-brown-600 max-w-2xl mx-auto">
                 Find your perfect role and apply today
               </p>
             </motion.div>
@@ -242,10 +241,10 @@ export default function CareersPage() {
                   >
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                       <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                        <h3 className="text-2xl font-bold text-brand-brown-800 mb-2">
                           {job.title}
                         </h3>
-                        <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                        <div className="flex flex-wrap gap-4 text-sm text-brand-brown-600">
                           <span className="flex items-center gap-1">
                             <Briefcase className="h-4 w-4" />
                             {job.department}
@@ -258,13 +257,13 @@ export default function CareersPage() {
                             <Clock className="h-4 w-4" />
                             {job.type}
                           </span>
-                          <span className="flex items-center gap-1 font-medium text-[#4a5d3f]">
-                            <DollarSign className="h-4 w-4" />
+                          <span className="flex items-center gap-1 font-medium text-brand-brown-600">
+                            <HandCoins className="h-4 w-4" />
                             {job.salary}
                           </span>
                         </div>
                       </div>
-                      <button className="px-6 py-3 bg-[#4a5d3f] text-white rounded-full font-semibold hover:opacity-90 transition-opacity whitespace-nowrap">
+                      <button className="px-6 py-3 bg-gradient-brown text-white rounded-full font-semibold hover:opacity-90 transition-opacity whitespace-nowrap shadow-brown-lg">
                         View Details
                       </button>
                     </div>
@@ -282,7 +281,7 @@ export default function CareersPage() {
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <h4 className="text-lg font-bold text-gray-900 mb-3">
+                          <h4 className="text-lg font-bold text-brand-brown-800 mb-3">
                             Requirements
                           </h4>
                           <ul className="space-y-2">
@@ -301,7 +300,7 @@ export default function CareersPage() {
                         </div>
 
                         <div>
-                          <h4 className="text-lg font-bold text-gray-900 mb-3">
+                          <h4 className="text-lg font-bold text-brand-brown-800 mb-3">
                             Responsibilities
                           </h4>
                           <ul className="space-y-2">
@@ -350,7 +349,7 @@ export default function CareersPage() {
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl mx-auto text-center bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f] p-12 rounded-2xl text-white"
+              className="max-w-3xl mx-auto text-center bg-gradient-to-br from-primary to-brand-brown-700 p-12 rounded-2xl text-white"
             >
               <h3 className="text-3xl font-bold mb-4">
                 Don&apos;t See Your Role?
@@ -361,7 +360,7 @@ export default function CareersPage() {
               </p>
               <a
                 href="mailto:mubarakadegbenga@gmail.com?subject=General Job Inquiry"
-                className="inline-block bg-white text-[#4a5d3f] px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                className="inline-block bg-white text-brand-brown-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
               >
                 Get in Touch
               </a>
@@ -369,8 +368,6 @@ export default function CareersPage() {
           </div>
         </section>
       </div>
-
-    <Footer />
     </>
   );
 }

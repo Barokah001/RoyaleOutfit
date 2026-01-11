@@ -49,11 +49,18 @@ export const addToCart = (
 
   // Save updated cart to localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
+  
+  // Trigger cart update event
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("cartUpdated"));
+  }
 
   return cart;
 };
 
 export const getCartCount = (): number => {
+  if (typeof window === "undefined") return 0;
+  
   const existingCart = localStorage.getItem("cart");
   if (!existingCart) return 0;
 
@@ -62,5 +69,50 @@ export const getCartCount = (): number => {
 };
 
 export const clearCart = () => {
+  if (typeof window === "undefined") return;
+  
   localStorage.removeItem("cart");
+  
+  // Trigger cart update event
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("cartUpdated"));
+  }
+};
+
+export const getCart = (): CartItem[] => {
+  if (typeof window === "undefined") return [];
+  
+  const existingCart = localStorage.getItem("cart");
+  return existingCart ? JSON.parse(existingCart) : [];
+};
+
+export const removeFromCart = (itemId: string) => {
+  if (typeof window === "undefined") return;
+  
+  const cart = getCart();
+  const updatedCart = cart.filter((item) => item.id !== itemId);
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
+  
+  // Trigger cart update event
+  window.dispatchEvent(new Event("cartUpdated"));
+};
+
+export const updateQuantity = (itemId: string, newQuantity: number) => {
+  if (typeof window === "undefined") return;
+  
+  const cart = getCart();
+  const itemIndex = cart.findIndex((item) => item.id === itemId);
+  
+  if (itemIndex > -1) {
+    if (newQuantity <= 0) {
+      // Remove item if quantity is 0 or less
+      cart.splice(itemIndex, 1);
+    } else {
+      cart[itemIndex].quantity = newQuantity;
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    
+    // Trigger cart update event
+    window.dispatchEvent(new Event("cartUpdated"));
+  }
 };

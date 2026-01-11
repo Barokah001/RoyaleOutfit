@@ -1,1 +1,71 @@
+
 @import "tailwindcss";
+
+/* Custom Brand Colors - Tailwind v4 Syntax */
+@theme {
+  /* Brand Brown Shades */
+  --color-brand-brown-50: #FAF6F0;
+  --color-brand-brown-100: #F5E6D3;
+  --color-brand-brown-200: #E8D4B8;
+  --color-brand-brown-300: #D4A574;
+  --color-brand-brown-400: #A0522D;
+  --color-brand-brown-500: #8B4513;
+  --color-brand-brown-600: #6B3410;
+  --color-brand-brown-700: #4E2A0D;
+  --color-brand-brown-800: #3E2723;
+  --color-brand-brown-900: #2C1810;
+  
+  /* Brand Cream Shades */
+  --color-brand-cream-50: #FFFFFF;
+  --color-brand-cream-100: #FFF8E7;
+  --color-brand-cream-200: #FAF6F0;
+  --color-brand-cream-300: #F5EFE7;
+  --color-brand-cream-400: #F0E8DC;
+  
+  /* Brand Gold Shades */
+  --color-brand-gold-50: #FFF9E6;
+  --color-brand-gold-100: #FFEFC7;
+  --color-brand-gold-200: #F5DCA8;
+  --color-brand-gold-300: #DAA520;
+  --color-brand-gold-400: #CD9B1D;
+  --color-brand-gold-500: #B8860B;
+  
+  /* Semantic Colors */
+  --color-primary: #8B4513;
+  --color-secondary: #D4A574;
+  --color-accent: #DAA520;
+  
+  /* Custom Shadows */
+  --shadow-brown-sm: 0 1px 2px 0 rgba(139, 69, 19, 0.05);
+  --shadow-brown: 0 4px 6px -1px rgba(139, 69, 19, 0.1), 0 2px 4px -1px rgba(139, 69, 19, 0.06);
+  --shadow-brown-md: 0 10px 15px -3px rgba(139, 69, 19, 0.1), 0 4px 6px -2px rgba(139, 69, 19, 0.05);
+  --shadow-brown-lg: 0 20px 25px -5px rgba(139, 69, 19, 0.1), 0 10px 10px -5px rgba(139, 69, 19, 0.04);
+  --shadow-brown-xl: 0 25px 50px -12px rgba(139, 69, 19, 0.25);
+}
+
+/* Global Styles */
+body {
+  background-color: var(--color-brand-cream-200);
+  color: var(--color-brand-brown-800);
+}
+
+/* Custom Gradient Utilities */
+.bg-gradient-brown {
+  background: linear-gradient(135deg, #8B4513 0%, #6B3410 100%);
+}
+
+.bg-gradient-gold {
+  background: linear-gradient(135deg, #DAA520 0%, #B8860B 100%);
+}
+
+.bg-gradient-cream {
+  background: linear-gradient(135deg, #FAF6F0 0%, #F5E6D3 100%);
+}
+
+/* Text Gradient */
+.text-gradient-brown {
+  background: linear-gradient(135deg, #8B4513 0%, #6B3410 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

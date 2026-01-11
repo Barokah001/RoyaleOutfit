@@ -6,7 +6,7 @@ import { ShoppingBag, Sparkles, TrendingUp } from "lucide-react";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-brand-cream-200">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -20,10 +20,10 @@ export default function HomePage() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="mb-6"
           >
-            <h1 className="text-6xl md:text-7xl font-bold text-foreground mb-4">
+            <h1 className="text-6xl md:text-7xl font-bold text-brand-brown-800 mb-4">
               Royale Outfits
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8">
+            <p className="text-xl md:text-2xl text-brand-brown-600 mb-8">
               Premium Custom-Tailored Kaftans & Menswear
             </p>
           </motion.div>
@@ -35,16 +35,10 @@ export default function HomePage() {
             className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
           >
             <Link
-              href="/product/kaftan-emerald"
-              className="inline-flex items-center justify-center gap-2 bg-nigerian-olive text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-lg"
+              href="/products"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-brown text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-brown-lg"
             >
               <ShoppingBag className="h-5 w-5" />
-              Shop Now
-            </Link>
-            <Link
-              href="/collections"
-              className="inline-flex items-center justify-center gap-2 bg-white text-nigerian-olive border-2 border-nigerian-olive px-8 py-4 rounded-full text-lg font-semibold hover:bg-nigerian-olive hover:text-white transition-all duration-300"
-            >
               View Collections
             </Link>
           </motion.div>
@@ -55,32 +49,32 @@ export default function HomePage() {
             transition={{ delay: 0.6, duration: 0.5 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20"
           >
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <Sparkles className="h-12 w-12 text-nigerian-olive mb-4 mx-auto" />
-              <h3 className="text-xl font-bold mb-2 text-foreground">
+            <div className="bg-white p-8 rounded-xl shadow-brown-lg border border-brand-brown-200">
+              <Sparkles className="h-12 w-12 text-primary mb-4 mx-auto" />
+              <h3 className="text-xl font-bold mb-2 text-brand-brown-800">
                 Premium Quality
               </h3>
-              <p className="text-gray-600">
+              <p className="text-brand-brown-600">
                 Handcrafted with finest fabrics and attention to detail
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <TrendingUp className="h-12 w-12 text-nigerian-olive mb-4 mx-auto" />
-              <h3 className="text-xl font-bold mb-2 text-foreground">
+            <div className="bg-white p-8 rounded-xl shadow-brown-lg border border-brand-brown-200">
+              <TrendingUp className="h-12 w-12 text-primary mb-4 mx-auto" />
+              <h3 className="text-xl font-bold mb-2 text-brand-brown-800">
                 Modern Designs
               </h3>
-              <p className="text-gray-600">
+              <p className="text-brand-brown-600">
                 Contemporary styles that honor traditional craftsmanship
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-lg">
-              <ShoppingBag className="h-12 w-12 text-nigerian-olive mb-4 mx-auto" />
-              <h3 className="text-xl font-bold mb-2 text-foreground">
+            <div className="bg-white p-8 rounded-xl shadow-brown-lg border border-brand-brown-200">
+              <ShoppingBag className="h-12 w-12 text-primary mb-4 mx-auto" />
+              <h3 className="text-xl font-bold mb-2 text-brand-brown-800">
                 Custom Tailoring
               </h3>
-              <p className="text-gray-600">
+              <p className="text-brand-brown-600">
                 Personalized monograms and perfect fit guaranteed
               </p>
             </div>

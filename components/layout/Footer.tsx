@@ -1,4 +1,4 @@
-// components/layout/Footer.tsx - With Working Social Links
+// components/layout/Footer.tsx - Brown Theme
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
 
@@ -32,24 +32,23 @@ export function Footer() {
     },
   ];
 
-  // Social media links - Replace these with actual social media URLs
   const socialLinks = [
     {
       name: "Facebook",
       icon: Facebook,
-      href: "https://facebook.com/royaleoutfits", // Replace with actual Facebook page
+      href: "https://facebook.com/royaleoutfits",
       color: "hover:text-[#1877f2]",
     },
     {
       name: "Instagram",
       icon: Instagram,
-      href: "https://instagram.com/the_royale_outfits", // Replace with actual Instagram handle
+      href: "https://instagram.com/royaleoutfits",
       color: "hover:text-[#e4405f]",
     },
     {
       name: "Twitter",
       icon: Twitter,
-      href: "https://twitter.com/royaleoutfits", // Replace with actual Twitter handle
+      href: "https://twitter.com/royaleoutfits",
       color: "hover:text-[#1da1f2]",
     },
     {
@@ -61,14 +60,14 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f] text-white">
+    <footer className="bg-gradient-to-br from-brand-brown-800 to-brand-brown-900 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="text-2xl font-bold mb-4 block hover:opacity-80 transition-opacity"
+              className="text-2xl font-bold mb-4 block hover:opacity-80 transition-opacity font-display"
             >
               ROYALE OUTFITS
             </Link>
@@ -115,12 +114,15 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 pt-8 mt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-4">
             <p className="text-white/60 text-sm">
               © {new Date().getFullYear()} ROYALE OUTFITS. All rights reserved.
             </p>
+
+            
           </div>
 
+          
         </div>
       </div>
     </footer>

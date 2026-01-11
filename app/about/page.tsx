@@ -1,11 +1,8 @@
-// app/about/page.tsx
+// app/about/page.tsx - Brown Theme
 "use client";
 
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
 import { motion } from "framer-motion";
 import { Award, Heart, Users, Sparkles } from "lucide-react";
-import Image from "next/image";
 
 export default function AboutPage() {
   const values = [
@@ -43,13 +40,11 @@ export default function AboutPage() {
   ];
 
   return (
-    <>
-    <Header />
-    <div className="min-h-screen bg-[#faf9f6]">
+    <div className="min-h-screen bg-brand-cream-200">
       {/* Hero Section */}
       <section className="relative h-[400px] md:h-[500px] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4a5d3f] to-[#3a4d2f]">
-          <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary to-brand-brown-700">
+          <div className="absolute inset-0 bg-[url('/images/cap-grid.jpeg')] opacity-30"></div>
         </div>
         <div className="relative container mx-auto px-4 h-full flex items-center justify-center text-center">
           <motion.div
@@ -57,11 +52,11 @@ export default function AboutPage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 font-display">
               About Royale Outfits
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
-              Crafting Excellence in Traditional Nigerian Attire Since 2019
+              Crafting Excellence in Traditional Nigerian Attire Since 2017
             </p>
           </motion.div>
         </div>
@@ -78,10 +73,10 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-4xl font-bold text-brand-brown-800 mb-6 font-display">
                 Our Story
               </h2>
-              <div className="space-y-4 text-lg text-gray-700 leading-relaxed text-left">
+              <div className="space-y-4 text-lg text-brand-brown-700 leading-relaxed text-left">
                 <p>
                   Royale Outfits was born from a passion for preserving and
                   celebrating Nigerian textile heritage. What started as a small
@@ -92,7 +87,7 @@ export default function AboutPage() {
                   Our founder, inspired by the rich history of Nigerian
                   craftsmanship, envisioned creating a brand that would bring
                   together the finest fabrics, skilled artisans, and modern
-                  design sensibilities. Today, we&apos;re proud to serve
+                  design sensibilities. Today, we`&apos;re proud to serve
                   customers across Nigeria and beyond, delivering pieces that
                   tell stories and create memories.
                 </p>
@@ -109,7 +104,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-[#faf9f6]">
+      <section className="py-20 bg-brand-cream-200">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -118,10 +113,10 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-brand-brown-800 mb-4 font-display">
               Our Values
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-brand-brown-600 max-w-2xl mx-auto">
               The principles that guide everything we do
             </p>
           </motion.div>
@@ -134,15 +129,15 @@ export default function AboutPage() {
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white p-6 rounded-xl shadow-brown hover:shadow-brown-lg transition-shadow text-center"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#e8efe6] mb-4">
-                  <value.icon className="h-8 w-8 text-[#4a5d3f]" />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-cream-100 mb-4">
+                  <value.icon className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-brand-brown-800 mb-3">
                   {value.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-brand-brown-600 text-sm leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>
@@ -152,7 +147,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-br from-[#4a5d3f] to-[#3a4d2f] text-white">
+      <section className="py-20 bg-gradient-to-br from-primary to-brand-brown-700 text-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {stats.map((stat, index) => (
@@ -185,12 +180,12 @@ export default function AboutPage() {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-[#faf9f6] p-8 rounded-xl"
+              className="bg-brand-cream-100 p-8 rounded-xl"
             >
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+              <h3 className="text-3xl font-bold text-brand-brown-800 mb-4 font-display">
                 Our Mission
               </h3>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-brand-brown-700 leading-relaxed">
                 To preserve and promote Nigerian textile heritage by creating
                 premium, custom-tailored attire that celebrates tradition while
                 embracing modern sophistication. We strive to make every
@@ -203,12 +198,12 @@ export default function AboutPage() {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-[#faf9f6] p-8 rounded-xl"
+              className="bg-brand-cream-100 p-8 rounded-xl"
             >
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+              <h3 className="text-3xl font-bold text-brand-brown-800 mb-4 font-display">
                 Our Vision
               </h3>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-brand-brown-700 leading-relaxed">
                 To become the leading name in African traditional attire,
                 recognized globally for exceptional quality, innovative designs,
                 and unwavering commitment to customer satisfaction. We envision
@@ -220,7 +215,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#faf9f6]">
+      <section className="py-20 bg-brand-cream-200">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -229,16 +224,16 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl font-bold text-brand-brown-800 mb-6 font-display">
               Ready to Experience Royale Quality?
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-brand-brown-600 mb-8">
               Discover our collection and let us create something special for
               you
             </p>
             <a
               href="/products"
-              className="inline-block bg-[#4a5d3f] text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity shadow-lg"
+              className="inline-block bg-gradient-brown text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity shadow-brown-lg"
             >
               Shop Our Collection
             </a>
@@ -246,8 +241,5 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
-
-    <Footer />
-    </>
   );
 }
